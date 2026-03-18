@@ -15,6 +15,7 @@ use std::sync::Arc;
 use async_trait::async_trait;
 use chrono::Utc;
 use rust_decimal::Decimal;
+use sqlx::Row;
 use uuid::Uuid;
 
 use errors::RwaError;
