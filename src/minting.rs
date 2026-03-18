@@ -152,22 +152,24 @@ impl TokenMintingService {
     // Private helpers
     // -----------------------------------------------------------------------
 
-    /// Acquires a pessimistic lock on rwa_token_supply, checks available supply,
-    /// increments minted_supply, inserts the token_mint record, and writes the
-    /// outbox event — all in a single DB transaction.
+    /// Acquires a pessimistic lock on legal_wrappers, derives allocated
+    /// supply from token_mints/token_redemptions, checks availability,
+    /// inserts the token_mint record, and writes the outbox event — all
+    /// in a single DB transaction.
     async fn lock_supply_and_create_mint(
         &self,
         req: &MintTokensRequest,
     ) -> Result<Uuid, RwaError> {
         let mut db_tx = self.db.begin().await?;
 
-        // Pessimistic lock — serialises concurrent mints for this asset.
-        // Prevents overselling: two simultaneous $250M mints against a
-        // $500M fund cannot both succeed if only $300M supply remains.
-        let supply_row = sqlx::query(
+        // Pessimistic lock on legal_wrappers — serialises concurrent
+        // mints for this asset. Prevents overselling: two simultaneous
+        // $250M mints against a $500M fund cannot both succeed if only
+        // $300M supply remains.
+        let wrapper_row = sqlx::query(
             r#"
-            SELECT id, total_supply, minted_supply
-            FROM rwa_token_supply
+            SELECT token_supply
+            FROM legal_wrappers
             WHERE asset_id = $1
             FOR UPDATE
             "#,
@@ -175,11 +177,41 @@ impl TokenMintingService {
         .bind(req.asset_id)
         .fetch_optional(&mut *db_tx)
         .await?
-        .ok_or(RwaError::SupplyNotFound { asset_id: req.asset_id })?;
+        .ok_or(RwaError::SupplyNotFound {
+            asset_id: req.asset_id,
+        })?;
 
-        let total_supply: Decimal  = supply_row.get("total_supply");
-        let minted_supply: Decimal = supply_row.get("minted_supply");
-        let available = total_supply - minted_supply;
+        let total_supply: Decimal = wrapper_row.get("token_supply");
+
+        // Derive allocated supply from the append-only ledger.
+        // All mints count (pending + confirmed) because supply is
+        // reserved at mint creation. Only settled redemptions release.
+        let minted_row = sqlx::query(
+            r#"
+            SELECT COALESCE(SUM(token_amount), 0) AS total
+            FROM token_mints
+            WHERE asset_id = $1
+            "#,
+        )
+        .bind(req.asset_id)
+        .fetch_one(&mut *db_tx)
+        .await?;
+        let total_minted: Decimal = minted_row.get("total");
+
+        let redeemed_row = sqlx::query(
+            r#"
+            SELECT COALESCE(SUM(token_amount), 0) AS total
+            FROM token_redemptions
+            WHERE asset_id = $1 AND status = 'settled'
+            "#,
+        )
+        .bind(req.asset_id)
+        .fetch_one(&mut *db_tx)
+        .await?;
+        let total_redeemed: Decimal = redeemed_row.get("total");
+
+        let allocated = total_minted - total_redeemed;
+        let available = total_supply - allocated;
 
         if available < req.token_amount {
             return Err(RwaError::InsufficientTokenSupply {
@@ -188,21 +220,8 @@ impl TokenMintingService {
             });
         }
 
-        // Reserve tokens — incremented now, locked until on-chain confirmation
-        sqlx::query(
-            r#"
-            UPDATE rwa_token_supply
-            SET minted_supply = minted_supply + $1,
-                updated_at    = NOW()
-            WHERE asset_id = $2
-            "#,
-        )
-        .bind(req.token_amount)
-        .bind(req.asset_id)
-        .execute(&mut *db_tx)
-        .await?;
-
         // Create mint record — state machine entry point
+        // The INSERT into token_mints IS the state change (no counter).
         let mint_id = Uuid::new_v4();
 
         sqlx::query(

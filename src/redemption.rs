@@ -93,8 +93,10 @@ impl TokenRedemptionService {
     }
 
     /// Called after the burn is confirmed on-chain.
-    /// Releases the minted_supply counter and triggers the fiat wire.
-    /// This is the final step — state machine: BURNED → SETTLED.
+    /// Triggers the fiat wire. Supply release is implicit — once the
+    /// redemption status becomes 'settled', the derived allocated supply
+    /// decreases automatically.
+    /// State machine: BURNED → SETTLED.
     #[instrument(skip(self), fields(%redemption_id))]
     pub async fn settle_redemption(
         &self,
@@ -118,8 +120,7 @@ impl TokenRedemptionService {
         .await?
         .ok_or(RwaError::RedemptionNotFound { redemption_id })?;
 
-        let status: String      = row.get("status");
-        let asset_id: Uuid      = row.get("asset_id");
+        let status: String        = row.get("status");
         let token_amount: Decimal = row.get("token_amount");
         let investor_id: Uuid   = row.get("investor_id");
         let bank_account: String = row.get("bank_account");
@@ -132,21 +133,9 @@ impl TokenRedemptionService {
             });
         }
 
-        // Release tokens from supply — they have been burned on-chain
-        sqlx::query(
-            r#"
-            UPDATE rwa_token_supply
-            SET minted_supply = minted_supply - $1,
-                updated_at    = NOW()
-            WHERE asset_id = $2
-            "#,
-        )
-        .bind(token_amount)
-        .bind(asset_id)
-        .execute(&mut *db_tx)
-        .await?;
-
         // Mark redemption as settled
+        // Supply is derived — settling a redemption (status → 'settled')
+        // automatically reduces the derived allocated supply.
         sqlx::query(
             r#"
             UPDATE token_redemptions
@@ -205,10 +194,10 @@ impl TokenRedemptionService {
     ) -> Result<Uuid, RwaError> {
         let mut db_tx = self.db.begin().await?;
 
-        // Lock investor's confirmed balance for this asset
-        let balance_row = sqlx::query(
+        // Lock investor's confirmed mint rows, then sum
+        sqlx::query(
             r#"
-            SELECT SUM(token_amount) AS total_balance
+            SELECT id
             FROM token_mints
             WHERE investor_id = $1
               AND asset_id    = $2
@@ -219,11 +208,25 @@ impl TokenRedemptionService {
         .bind(req.investor_id)
         .bind(req.asset_id)
         .bind(MintStatus::Confirmed.as_str())
+        .fetch_all(&mut *db_tx)
+        .await?;
+
+        let balance_row = sqlx::query(
+            r#"
+            SELECT COALESCE(SUM(token_amount), 0) AS total_balance
+            FROM token_mints
+            WHERE investor_id = $1
+              AND asset_id    = $2
+              AND status      = $3
+            "#,
+        )
+        .bind(req.investor_id)
+        .bind(req.asset_id)
+        .bind(MintStatus::Confirmed.as_str())
         .fetch_one(&mut *db_tx)
         .await?;
 
-        let total_balance: Option<Decimal> = balance_row.get("total_balance");
-        let held = total_balance.unwrap_or(Decimal::ZERO);
+        let held: Decimal = balance_row.get("total_balance");
 
         if held < req.token_amount {
             return Err(RwaError::InsufficientTokenBalance {

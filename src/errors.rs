@@ -33,7 +33,7 @@ pub enum RwaError {
     #[error("asset {asset_id} not found")]
     AssetNotFound { asset_id: Uuid },
 
-    #[error("token supply record not found for asset {asset_id}")]
+    #[error("legal wrapper not found for asset {asset_id}")]
     SupplyNotFound { asset_id: Uuid },
 
     #[error("mint {mint_id} not found")]

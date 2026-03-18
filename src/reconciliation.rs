@@ -43,21 +43,42 @@ impl RwaReconciliationEngine {
     pub async fn reconcile_asset(&self, asset_id: Uuid) -> Result<bool, RwaError> {
 
         // ---- STEP 1: Read internal ledger state ------------------------------
-        let row = sqlx::query(
-            r#"
-            SELECT ts.minted_supply, a.total_value
-            FROM rwa_token_supply ts
-            JOIN rwa_assets a ON a.id = ts.asset_id
-            WHERE ts.asset_id = $1
-            "#,
+        let asset_row = sqlx::query(
+            "SELECT total_value FROM rwa_assets WHERE id = $1",
         )
         .bind(asset_id)
         .fetch_optional(&self.db)
         .await?
-        .ok_or(RwaError::SupplyNotFound { asset_id })?;
+        .ok_or(RwaError::AssetNotFound { asset_id })?;
 
-        let minted_supply: Decimal = row.get("minted_supply");
-        let total_value: Decimal   = row.get("total_value");
+        let total_value: Decimal = asset_row.get("total_value");
+
+        // Derive allocated supply from append-only ledger tables
+        let minted_row = sqlx::query(
+            r#"
+            SELECT COALESCE(SUM(token_amount), 0) AS total
+            FROM token_mints
+            WHERE asset_id = $1
+            "#,
+        )
+        .bind(asset_id)
+        .fetch_one(&self.db)
+        .await?;
+        let total_minted: Decimal = minted_row.get("total");
+
+        let redeemed_row = sqlx::query(
+            r#"
+            SELECT COALESCE(SUM(token_amount), 0) AS total
+            FROM token_redemptions
+            WHERE asset_id = $1 AND status = 'settled'
+            "#,
+        )
+        .bind(asset_id)
+        .fetch_one(&self.db)
+        .await?;
+        let total_redeemed: Decimal = redeemed_row.get("total");
+
+        let minted_supply = total_minted - total_redeemed;
 
         // ---- STEP 2: Read on-chain state and custodian report ----------------
         // Both calls are OUTSIDE any DB transaction — external service calls

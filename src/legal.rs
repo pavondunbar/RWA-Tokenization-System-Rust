@@ -22,8 +22,8 @@ impl LegalWrapperService {
     /// This is the bridge between off-chain ownership and on-chain token representation.
     /// Without this layer the token is just a receipt — no enforceable legal claim.
     ///
-    /// Also initialises the token supply tracker and advances the asset state machine
-    /// from PENDING_LEGAL → PENDING_AUDIT, all atomically.
+    /// Also advances the asset state machine from PENDING_LEGAL → PENDING_AUDIT,
+    /// all atomically.
     #[instrument(skip(self), fields(
         asset_id     = %req.asset_id,
         structure    = %req.structure_type.as_str(),
@@ -83,22 +83,6 @@ impl LegalWrapperService {
         .bind(&req.jurisdiction)
         .bind(req.token_supply)
         .bind(price_per_token)
-        .execute(&mut *db_tx)
-        .await?;
-
-        // Initialise token supply tracker — minted_supply starts at zero.
-        // TokenMintingService uses FOR UPDATE on this row to prevent overselling.
-        sqlx::query(
-            r#"
-            INSERT INTO rwa_token_supply (
-                id, asset_id, total_supply, minted_supply, created_at, updated_at
-            )
-            VALUES ($1, $2, $3, 0, NOW(), NOW())
-            "#,
-        )
-        .bind(Uuid::new_v4())
-        .bind(req.asset_id)
-        .bind(req.token_supply)
         .execute(&mut *db_tx)
         .await?;
 

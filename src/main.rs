@@ -116,7 +116,7 @@ impl OracleService for StubOracleService {
     }
 }
 
-/// Stub: always returns minted_supply as on-chain supply (perfect match).
+/// Stub: derives allocated supply from ledger tables (perfect match).
 /// Real implementation: calls ERC-1400 totalSupply() via Ethereum node.
 struct StubBlockchainService {
     db: sqlx::PgPool,
@@ -125,13 +125,30 @@ struct StubBlockchainService {
 #[async_trait]
 impl BlockchainService for StubBlockchainService {
     async fn get_total_supply(&self, asset_id: Uuid) -> Result<Decimal, RwaError> {
-        let row = sqlx::query("SELECT minted_supply FROM rwa_token_supply WHERE asset_id = $1")
-            .bind(asset_id)
-            .fetch_optional(&self.db)
-            .await?;
-        let supply = row
-            .map(|r| r.get::<Decimal, _>("minted_supply"))
-            .unwrap_or(Decimal::ZERO);
+        let minted_row = sqlx::query(
+            r#"
+            SELECT COALESCE(SUM(token_amount), 0) AS total
+            FROM token_mints WHERE asset_id = $1
+            "#,
+        )
+        .bind(asset_id)
+        .fetch_one(&self.db)
+        .await?;
+        let total_minted: Decimal = minted_row.get("total");
+
+        let redeemed_row = sqlx::query(
+            r#"
+            SELECT COALESCE(SUM(token_amount), 0) AS total
+            FROM token_redemptions
+            WHERE asset_id = $1 AND status = 'settled'
+            "#,
+        )
+        .bind(asset_id)
+        .fetch_one(&self.db)
+        .await?;
+        let total_redeemed: Decimal = redeemed_row.get("total");
+
+        let supply = total_minted - total_redeemed;
         tracing::info!(%asset_id, %supply, "blockchain: total supply (stub, mirrors DB)");
         Ok(supply)
     }
@@ -274,6 +291,20 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         idempotency_key: Uuid::new_v4().to_string(),
     }).await?;
     tracing::info!(%compliance_id, "step 3 complete: investor onboarded");
+
+    // 3b. Whitelist the issuer wallet so minting transfers pass
+    sqlx::query(
+        "INSERT INTO whitelisted_wallets \
+         (id, investor_id, wallet_address, tier, created_at) \
+         VALUES ($1, $2, $3, $4, NOW()) \
+         ON CONFLICT (wallet_address) DO NOTHING",
+    )
+    .bind(Uuid::new_v4())
+    .bind(Uuid::nil())
+    .bind("ISSUER_WALLET")
+    .bind("system")
+    .execute(&pool)
+    .await?;
 
     // 4. Mint 50,000,000 tokens ($50M fiat wired)
     let mint = minting_svc.mint_tokens(MintTokensRequest {

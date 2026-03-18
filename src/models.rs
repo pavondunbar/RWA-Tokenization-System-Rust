@@ -243,22 +243,6 @@ pub struct TokenRedemption {
 }
 
 #[derive(Debug, Clone)]
-pub struct RwaTokenSupply {
-    pub id:             Uuid,
-    pub asset_id:       Uuid,
-    pub total_supply:   Decimal,
-    pub minted_supply:  Decimal,
-    pub created_at:     DateTime<Utc>,
-    pub updated_at:     DateTime<Utc>,
-}
-
-impl RwaTokenSupply {
-    pub fn available(&self) -> Decimal {
-        self.total_supply - self.minted_supply
-    }
-}
-
-#[derive(Debug, Clone)]
 pub struct NavCalculation {
     pub id:              Uuid,
     pub asset_id:        Uuid,
