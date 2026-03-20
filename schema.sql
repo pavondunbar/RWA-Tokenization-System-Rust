@@ -52,6 +52,8 @@ CREATE TABLE token_mints (
   fiat_received DECIMAL(38,18) NOT NULL,
   status VARCHAR(20) NOT NULL,
   idempotency_key VARCHAR(256) UNIQUE,
+  tx_hash VARCHAR(256),
+  block_number BIGINT,
   created_at TIMESTAMPTZ NOT NULL,
   confirmed_at TIMESTAMPTZ
 );

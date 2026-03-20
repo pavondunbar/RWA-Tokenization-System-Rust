@@ -186,16 +186,48 @@ impl AlertService for StubAlertService {
     }
 }
 
-/// Stub: logs and discards Kafka messages.
-/// Real implementation: rdkafka or kafka-rust producer.
-struct StubKafkaProducer;
+/// Real Kafka producer backed by rdkafka/librdkafka.
+struct RdKafkaProducer {
+    producer: rdkafka::producer::FutureProducer,
+}
+
+impl RdKafkaProducer {
+    fn new(brokers: &str) -> Result<Self, RwaError> {
+        let producer = rdkafka::ClientConfig::new()
+            .set("bootstrap.servers", brokers)
+            .set("message.timeout.ms", "5000")
+            .create()
+            .map_err(|e| {
+                RwaError::Kafka(
+                    format!("producer creation failed: {e}"),
+                )
+            })?;
+        Ok(Self { producer })
+    }
+}
 
 #[async_trait]
-impl KafkaProducer for StubKafkaProducer {
-    async fn send(&self, topic: &str, key: &[u8], value: &[u8]) -> Result<(), RwaError> {
-        let key_str   = String::from_utf8_lossy(key);
-        let value_str = String::from_utf8_lossy(value);
-        tracing::info!(%topic, key = %key_str, value = %value_str, "Kafka: message sent (stub)");
+impl KafkaProducer for RdKafkaProducer {
+    async fn send(
+        &self,
+        topic: &str,
+        key: &[u8],
+        value: &[u8],
+    ) -> Result<(), RwaError> {
+        self.producer
+            .send(
+                rdkafka::producer::FutureRecord::to(topic)
+                    .key(key)
+                    .payload(value),
+                std::time::Duration::from_secs(5),
+            )
+            .await
+            .map_err(|(e, _)| {
+                RwaError::Kafka(
+                    format!("send to {topic} failed: {e}"),
+                )
+            })?;
+        tracing::info!(%topic, "kafka: message delivered");
         Ok(())
     }
 }
@@ -209,7 +241,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     tracing_subscriber::fmt::init();
 
     let database_url = std::env::var("DATABASE_URL")
-        .unwrap_or_else(|_| "postgres://postgres:password@localhost/rwa".into());
+        .unwrap_or_else(|_| "postgres://postgres@localhost/rustrwa".into());
 
     let pool = sqlx::PgPool::connect(&database_url).await?;
 
@@ -248,9 +280,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         Box::new(StubAlertService),
     );
 
+    let kafka_brokers = std::env::var("KAFKA_BROKERS")
+        .unwrap_or_else(|_| "localhost:9092".into());
+    let kafka_producer = RdKafkaProducer::new(&kafka_brokers)?;
+
     let outbox_publisher = outbox::RwaOutboxPublisher::new(
         pool.clone(),
-        Box::new(StubKafkaProducer),
+        Box::new(kafka_producer),
         100,
     );
 

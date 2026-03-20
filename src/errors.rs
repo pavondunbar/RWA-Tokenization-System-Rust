@@ -51,6 +51,9 @@ pub enum RwaError {
     #[error("blockchain error: {0}")]
     Blockchain(String),
 
+    #[error("kafka error: {0}")]
+    Kafka(String),
+
     #[error("database error: {0}")]
     Database(#[from] sqlx::Error),
 
