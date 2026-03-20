@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DLIBRDKAFKA_STATICLIB
 
-CXX_INCLUDES = -I/Users/pavondunbar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rdkafka-sys-4.10.0+2.12.1/librdkafka/src-cpp -I/Users/pavondunbar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rdkafka-sys-4.10.0+2.12.1/librdkafka/src -I/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/generated/dummy
+CXX_INCLUDES = -I/Users/pavondunbar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rdkafka-sys-4.10.0+2.12.1/librdkafka/src-cpp -I/Users/pavondunbar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rdkafka-sys-4.10.0+2.12.1/librdkafka/src -I/Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/generated/dummy
 
 CXX_FLAGSarm64 =  -ffunction-sections -fdata-sections -fPIC --target=arm64-apple-macosx -mmacosx-version-min=14.4 -w -g -arch arm64 -fPIC
 

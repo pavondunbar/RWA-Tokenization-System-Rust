@@ -18,16 +18,11 @@ impl RwaOutboxPublisher {
 
     /// Polls `outbox_events` for unpublished events and delivers them to Kafka.
     ///
-    /// `FOR UPDATE SKIP LOCKED` enables multiple publisher instances to run
-    /// concurrently without duplicate delivery — each instance claims a
-    /// non-overlapping batch of rows.
-    ///
-    /// Per-event marking: if Kafka fails mid-batch, only already-published
-    /// events are marked. The rest retry on the next poll cycle.
+    /// Each event is processed in its own transaction: lock → send → mark → commit.
+    /// If Kafka fails on event N, events 0..N-1 are durably marked as published
+    /// and won't be re-delivered. Event N and beyond retry on the next poll cycle.
     #[instrument(skip(self))]
     pub async fn poll_and_publish(&self) -> Result<usize, RwaError> {
-        let mut db_tx = self.db.begin().await?;
-
         let rows = sqlx::query(
             r#"
             SELECT id, aggregate_id, event_type, payload
@@ -35,11 +30,10 @@ impl RwaOutboxPublisher {
             WHERE published_at IS NULL
             ORDER BY created_at
             LIMIT $1
-            FOR UPDATE SKIP LOCKED
             "#,
         )
         .bind(self.batch_size)
-        .fetch_all(&mut *db_tx)
+        .fetch_all(&self.db)
         .await?;
 
         if rows.is_empty() {
@@ -54,20 +48,42 @@ impl RwaOutboxPublisher {
             let event_type: String   = row.get("event_type");
             let payload: serde_json::Value = row.get("payload");
 
-            let topic = format!("rwa.{event_type}");
+            let mut db_tx = self.db.begin().await?;
+
+            // Re-lock within a per-event transaction. SKIP LOCKED
+            // prevents concurrent publishers from claiming the same event.
+            let locked = sqlx::query(
+                r#"
+                SELECT id FROM outbox_events
+                WHERE id = $1 AND published_at IS NULL
+                FOR UPDATE SKIP LOCKED
+                "#,
+            )
+            .bind(event_id)
+            .fetch_optional(&mut *db_tx)
+            .await?;
+
+            if locked.is_none() {
+                continue;
+            }
+
             let payload_bytes = payload.to_string();
 
-            self.kafka
+            if let Err(e) = self.kafka
                 .send(
-                    &topic,
+                    &event_type,
                     aggregate_id.as_bytes(),
                     payload_bytes.as_bytes(),
                 )
-                .await?;
+                .await
+            {
+                error!(
+                    %event_id, error = %e,
+                    "kafka send failed — will retry next poll"
+                );
+                break;
+            }
 
-            // Mark published INSIDE the loop, per event.
-            // If Kafka fails on event N, events 0..N-1 are already marked
-            // and won't be re-delivered. Event N and beyond retry next poll.
             sqlx::query(
                 "UPDATE outbox_events SET published_at = NOW() WHERE id = $1",
             )
@@ -75,10 +91,10 @@ impl RwaOutboxPublisher {
             .execute(&mut *db_tx)
             .await?;
 
+            db_tx.commit().await?;
+
             published += 1;
         }
-
-        db_tx.commit().await?;
 
         info!(batch_size = published, "outbox events published to Kafka");
         Ok(published)

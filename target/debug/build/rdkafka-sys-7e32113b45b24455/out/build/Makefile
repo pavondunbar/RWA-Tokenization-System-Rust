@@ -60,7 +60,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /Users/pavondunbar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rdkafka-sys-4.10.0+2.12.1/librdkafka
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build
+CMAKE_BINARY_DIR = /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/CMakeFiles /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/CMakeFiles /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

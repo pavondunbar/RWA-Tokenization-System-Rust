@@ -55,7 +55,7 @@ CFLAGS_aarch64_apple_darwin = None
 cargo:rerun-if-env-changed=CFLAGS_aarch64-apple-darwin
 CFLAGS_aarch64-apple-darwin = None
 cargo:rustc-link-lib=static=ring_core_0_17_14__test
-cargo:rustc-link-search=native=/Users/pavondunbar/RWA-RUST/target/debug/build/ring-98535b3a2fdad4e3/out
+cargo:rustc-link-search=native=/Users/pavondunbar/RUST-RWA/target/debug/build/ring-98535b3a2fdad4e3/out
 cargo:rerun-if-changed=crypto/perlasm/x86_64-xlate.pl
 cargo:rerun-if-changed=crypto/perlasm/x86gas.pl
 cargo:rerun-if-changed=crypto/perlasm/x86nasm.pl

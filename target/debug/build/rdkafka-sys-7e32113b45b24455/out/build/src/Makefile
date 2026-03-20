@@ -60,7 +60,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /Users/pavondunbar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rdkafka-sys-4.10.0+2.12.1/librdkafka
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build
+CMAKE_BINARY_DIR = /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,14 +132,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/CMakeFiles /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/src//CMakeFiles/progress.marks
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/CMakeFiles 0
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/CMakeFiles /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/src//CMakeFiles/progress.marks
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/clean
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -148,22 +148,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/CMakeFiles/rdkafka.dir/rule:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/rdkafka.dir/rule
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/rdkafka.dir/rule
 .PHONY : src/CMakeFiles/rdkafka.dir/rule
 
 # Convenience name for target.
@@ -172,7 +172,7 @@ rdkafka: src/CMakeFiles/rdkafka.dir/rule
 
 # fast build rule for target.
 rdkafka/fast:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/build
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/build
 .PHONY : rdkafka/fast
 
 cJSON.o: cJSON.c.o
@@ -180,7 +180,7 @@ cJSON.o: cJSON.c.o
 
 # target to build an object file
 cJSON.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/cJSON.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/cJSON.c.o
 .PHONY : cJSON.c.o
 
 cJSON.i: cJSON.c.i
@@ -188,7 +188,7 @@ cJSON.i: cJSON.c.i
 
 # target to preprocess a source file
 cJSON.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/cJSON.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/cJSON.c.i
 .PHONY : cJSON.c.i
 
 cJSON.s: cJSON.c.s
@@ -196,7 +196,7 @@ cJSON.s: cJSON.c.s
 
 # target to generate assembly for a file
 cJSON.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/cJSON.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/cJSON.c.s
 .PHONY : cJSON.c.s
 
 crc32c.o: crc32c.c.o
@@ -204,7 +204,7 @@ crc32c.o: crc32c.c.o
 
 # target to build an object file
 crc32c.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/crc32c.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/crc32c.c.o
 .PHONY : crc32c.c.o
 
 crc32c.i: crc32c.c.i
@@ -212,7 +212,7 @@ crc32c.i: crc32c.c.i
 
 # target to preprocess a source file
 crc32c.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/crc32c.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/crc32c.c.i
 .PHONY : crc32c.c.i
 
 crc32c.s: crc32c.c.s
@@ -220,7 +220,7 @@ crc32c.s: crc32c.c.s
 
 # target to generate assembly for a file
 crc32c.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/crc32c.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/crc32c.c.s
 .PHONY : crc32c.c.s
 
 lz4.o: lz4.c.o
@@ -228,7 +228,7 @@ lz4.o: lz4.c.o
 
 # target to build an object file
 lz4.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4.c.o
 .PHONY : lz4.c.o
 
 lz4.i: lz4.c.i
@@ -236,7 +236,7 @@ lz4.i: lz4.c.i
 
 # target to preprocess a source file
 lz4.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4.c.i
 .PHONY : lz4.c.i
 
 lz4.s: lz4.c.s
@@ -244,7 +244,7 @@ lz4.s: lz4.c.s
 
 # target to generate assembly for a file
 lz4.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4.c.s
 .PHONY : lz4.c.s
 
 lz4frame.o: lz4frame.c.o
@@ -252,7 +252,7 @@ lz4frame.o: lz4frame.c.o
 
 # target to build an object file
 lz4frame.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4frame.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4frame.c.o
 .PHONY : lz4frame.c.o
 
 lz4frame.i: lz4frame.c.i
@@ -260,7 +260,7 @@ lz4frame.i: lz4frame.c.i
 
 # target to preprocess a source file
 lz4frame.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4frame.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4frame.c.i
 .PHONY : lz4frame.c.i
 
 lz4frame.s: lz4frame.c.s
@@ -268,7 +268,7 @@ lz4frame.s: lz4frame.c.s
 
 # target to generate assembly for a file
 lz4frame.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4frame.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4frame.c.s
 .PHONY : lz4frame.c.s
 
 lz4hc.o: lz4hc.c.o
@@ -276,7 +276,7 @@ lz4hc.o: lz4hc.c.o
 
 # target to build an object file
 lz4hc.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4hc.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4hc.c.o
 .PHONY : lz4hc.c.o
 
 lz4hc.i: lz4hc.c.i
@@ -284,7 +284,7 @@ lz4hc.i: lz4hc.c.i
 
 # target to preprocess a source file
 lz4hc.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4hc.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4hc.c.i
 .PHONY : lz4hc.c.i
 
 lz4hc.s: lz4hc.c.s
@@ -292,7 +292,7 @@ lz4hc.s: lz4hc.c.s
 
 # target to generate assembly for a file
 lz4hc.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4hc.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/lz4hc.c.s
 .PHONY : lz4hc.c.s
 
 nanopb/pb_common.o: nanopb/pb_common.c.o
@@ -300,7 +300,7 @@ nanopb/pb_common.o: nanopb/pb_common.c.o
 
 # target to build an object file
 nanopb/pb_common.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_common.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_common.c.o
 .PHONY : nanopb/pb_common.c.o
 
 nanopb/pb_common.i: nanopb/pb_common.c.i
@@ -308,7 +308,7 @@ nanopb/pb_common.i: nanopb/pb_common.c.i
 
 # target to preprocess a source file
 nanopb/pb_common.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_common.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_common.c.i
 .PHONY : nanopb/pb_common.c.i
 
 nanopb/pb_common.s: nanopb/pb_common.c.s
@@ -316,7 +316,7 @@ nanopb/pb_common.s: nanopb/pb_common.c.s
 
 # target to generate assembly for a file
 nanopb/pb_common.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_common.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_common.c.s
 .PHONY : nanopb/pb_common.c.s
 
 nanopb/pb_decode.o: nanopb/pb_decode.c.o
@@ -324,7 +324,7 @@ nanopb/pb_decode.o: nanopb/pb_decode.c.o
 
 # target to build an object file
 nanopb/pb_decode.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_decode.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_decode.c.o
 .PHONY : nanopb/pb_decode.c.o
 
 nanopb/pb_decode.i: nanopb/pb_decode.c.i
@@ -332,7 +332,7 @@ nanopb/pb_decode.i: nanopb/pb_decode.c.i
 
 # target to preprocess a source file
 nanopb/pb_decode.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_decode.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_decode.c.i
 .PHONY : nanopb/pb_decode.c.i
 
 nanopb/pb_decode.s: nanopb/pb_decode.c.s
@@ -340,7 +340,7 @@ nanopb/pb_decode.s: nanopb/pb_decode.c.s
 
 # target to generate assembly for a file
 nanopb/pb_decode.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_decode.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_decode.c.s
 .PHONY : nanopb/pb_decode.c.s
 
 nanopb/pb_encode.o: nanopb/pb_encode.c.o
@@ -348,7 +348,7 @@ nanopb/pb_encode.o: nanopb/pb_encode.c.o
 
 # target to build an object file
 nanopb/pb_encode.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_encode.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_encode.c.o
 .PHONY : nanopb/pb_encode.c.o
 
 nanopb/pb_encode.i: nanopb/pb_encode.c.i
@@ -356,7 +356,7 @@ nanopb/pb_encode.i: nanopb/pb_encode.c.i
 
 # target to preprocess a source file
 nanopb/pb_encode.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_encode.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_encode.c.i
 .PHONY : nanopb/pb_encode.c.i
 
 nanopb/pb_encode.s: nanopb/pb_encode.c.s
@@ -364,7 +364,7 @@ nanopb/pb_encode.s: nanopb/pb_encode.c.s
 
 # target to generate assembly for a file
 nanopb/pb_encode.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_encode.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/nanopb/pb_encode.c.s
 .PHONY : nanopb/pb_encode.c.s
 
 opentelemetry/common.pb.o: opentelemetry/common.pb.c.o
@@ -372,7 +372,7 @@ opentelemetry/common.pb.o: opentelemetry/common.pb.c.o
 
 # target to build an object file
 opentelemetry/common.pb.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/common.pb.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/common.pb.c.o
 .PHONY : opentelemetry/common.pb.c.o
 
 opentelemetry/common.pb.i: opentelemetry/common.pb.c.i
@@ -380,7 +380,7 @@ opentelemetry/common.pb.i: opentelemetry/common.pb.c.i
 
 # target to preprocess a source file
 opentelemetry/common.pb.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/common.pb.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/common.pb.c.i
 .PHONY : opentelemetry/common.pb.c.i
 
 opentelemetry/common.pb.s: opentelemetry/common.pb.c.s
@@ -388,7 +388,7 @@ opentelemetry/common.pb.s: opentelemetry/common.pb.c.s
 
 # target to generate assembly for a file
 opentelemetry/common.pb.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/common.pb.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/common.pb.c.s
 .PHONY : opentelemetry/common.pb.c.s
 
 opentelemetry/metrics.pb.o: opentelemetry/metrics.pb.c.o
@@ -396,7 +396,7 @@ opentelemetry/metrics.pb.o: opentelemetry/metrics.pb.c.o
 
 # target to build an object file
 opentelemetry/metrics.pb.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/metrics.pb.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/metrics.pb.c.o
 .PHONY : opentelemetry/metrics.pb.c.o
 
 opentelemetry/metrics.pb.i: opentelemetry/metrics.pb.c.i
@@ -404,7 +404,7 @@ opentelemetry/metrics.pb.i: opentelemetry/metrics.pb.c.i
 
 # target to preprocess a source file
 opentelemetry/metrics.pb.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/metrics.pb.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/metrics.pb.c.i
 .PHONY : opentelemetry/metrics.pb.c.i
 
 opentelemetry/metrics.pb.s: opentelemetry/metrics.pb.c.s
@@ -412,7 +412,7 @@ opentelemetry/metrics.pb.s: opentelemetry/metrics.pb.c.s
 
 # target to generate assembly for a file
 opentelemetry/metrics.pb.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/metrics.pb.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/metrics.pb.c.s
 .PHONY : opentelemetry/metrics.pb.c.s
 
 opentelemetry/resource.pb.o: opentelemetry/resource.pb.c.o
@@ -420,7 +420,7 @@ opentelemetry/resource.pb.o: opentelemetry/resource.pb.c.o
 
 # target to build an object file
 opentelemetry/resource.pb.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/resource.pb.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/resource.pb.c.o
 .PHONY : opentelemetry/resource.pb.c.o
 
 opentelemetry/resource.pb.i: opentelemetry/resource.pb.c.i
@@ -428,7 +428,7 @@ opentelemetry/resource.pb.i: opentelemetry/resource.pb.c.i
 
 # target to preprocess a source file
 opentelemetry/resource.pb.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/resource.pb.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/resource.pb.c.i
 .PHONY : opentelemetry/resource.pb.c.i
 
 opentelemetry/resource.pb.s: opentelemetry/resource.pb.c.s
@@ -436,7 +436,7 @@ opentelemetry/resource.pb.s: opentelemetry/resource.pb.c.s
 
 # target to generate assembly for a file
 opentelemetry/resource.pb.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/resource.pb.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/opentelemetry/resource.pb.c.s
 .PHONY : opentelemetry/resource.pb.c.s
 
 rdaddr.o: rdaddr.c.o
@@ -444,7 +444,7 @@ rdaddr.o: rdaddr.c.o
 
 # target to build an object file
 rdaddr.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdaddr.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdaddr.c.o
 .PHONY : rdaddr.c.o
 
 rdaddr.i: rdaddr.c.i
@@ -452,7 +452,7 @@ rdaddr.i: rdaddr.c.i
 
 # target to preprocess a source file
 rdaddr.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdaddr.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdaddr.c.i
 .PHONY : rdaddr.c.i
 
 rdaddr.s: rdaddr.c.s
@@ -460,7 +460,7 @@ rdaddr.s: rdaddr.c.s
 
 # target to generate assembly for a file
 rdaddr.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdaddr.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdaddr.c.s
 .PHONY : rdaddr.c.s
 
 rdavl.o: rdavl.c.o
@@ -468,7 +468,7 @@ rdavl.o: rdavl.c.o
 
 # target to build an object file
 rdavl.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdavl.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdavl.c.o
 .PHONY : rdavl.c.o
 
 rdavl.i: rdavl.c.i
@@ -476,7 +476,7 @@ rdavl.i: rdavl.c.i
 
 # target to preprocess a source file
 rdavl.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdavl.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdavl.c.i
 .PHONY : rdavl.c.i
 
 rdavl.s: rdavl.c.s
@@ -484,7 +484,7 @@ rdavl.s: rdavl.c.s
 
 # target to generate assembly for a file
 rdavl.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdavl.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdavl.c.s
 .PHONY : rdavl.c.s
 
 rdbase64.o: rdbase64.c.o
@@ -492,7 +492,7 @@ rdbase64.o: rdbase64.c.o
 
 # target to build an object file
 rdbase64.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdbase64.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdbase64.c.o
 .PHONY : rdbase64.c.o
 
 rdbase64.i: rdbase64.c.i
@@ -500,7 +500,7 @@ rdbase64.i: rdbase64.c.i
 
 # target to preprocess a source file
 rdbase64.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdbase64.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdbase64.c.i
 .PHONY : rdbase64.c.i
 
 rdbase64.s: rdbase64.c.s
@@ -508,7 +508,7 @@ rdbase64.s: rdbase64.c.s
 
 # target to generate assembly for a file
 rdbase64.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdbase64.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdbase64.c.s
 .PHONY : rdbase64.c.s
 
 rdbuf.o: rdbuf.c.o
@@ -516,7 +516,7 @@ rdbuf.o: rdbuf.c.o
 
 # target to build an object file
 rdbuf.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdbuf.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdbuf.c.o
 .PHONY : rdbuf.c.o
 
 rdbuf.i: rdbuf.c.i
@@ -524,7 +524,7 @@ rdbuf.i: rdbuf.c.i
 
 # target to preprocess a source file
 rdbuf.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdbuf.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdbuf.c.i
 .PHONY : rdbuf.c.i
 
 rdbuf.s: rdbuf.c.s
@@ -532,7 +532,7 @@ rdbuf.s: rdbuf.c.s
 
 # target to generate assembly for a file
 rdbuf.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdbuf.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdbuf.c.s
 .PHONY : rdbuf.c.s
 
 rdcrc32.o: rdcrc32.c.o
@@ -540,7 +540,7 @@ rdcrc32.o: rdcrc32.c.o
 
 # target to build an object file
 rdcrc32.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdcrc32.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdcrc32.c.o
 .PHONY : rdcrc32.c.o
 
 rdcrc32.i: rdcrc32.c.i
@@ -548,7 +548,7 @@ rdcrc32.i: rdcrc32.c.i
 
 # target to preprocess a source file
 rdcrc32.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdcrc32.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdcrc32.c.i
 .PHONY : rdcrc32.c.i
 
 rdcrc32.s: rdcrc32.c.s
@@ -556,7 +556,7 @@ rdcrc32.s: rdcrc32.c.s
 
 # target to generate assembly for a file
 rdcrc32.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdcrc32.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdcrc32.c.s
 .PHONY : rdcrc32.c.s
 
 rddl.o: rddl.c.o
@@ -564,7 +564,7 @@ rddl.o: rddl.c.o
 
 # target to build an object file
 rddl.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rddl.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rddl.c.o
 .PHONY : rddl.c.o
 
 rddl.i: rddl.c.i
@@ -572,7 +572,7 @@ rddl.i: rddl.c.i
 
 # target to preprocess a source file
 rddl.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rddl.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rddl.c.i
 .PHONY : rddl.c.i
 
 rddl.s: rddl.c.s
@@ -580,7 +580,7 @@ rddl.s: rddl.c.s
 
 # target to generate assembly for a file
 rddl.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rddl.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rddl.c.s
 .PHONY : rddl.c.s
 
 rdfnv1a.o: rdfnv1a.c.o
@@ -588,7 +588,7 @@ rdfnv1a.o: rdfnv1a.c.o
 
 # target to build an object file
 rdfnv1a.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdfnv1a.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdfnv1a.c.o
 .PHONY : rdfnv1a.c.o
 
 rdfnv1a.i: rdfnv1a.c.i
@@ -596,7 +596,7 @@ rdfnv1a.i: rdfnv1a.c.i
 
 # target to preprocess a source file
 rdfnv1a.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdfnv1a.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdfnv1a.c.i
 .PHONY : rdfnv1a.c.i
 
 rdfnv1a.s: rdfnv1a.c.s
@@ -604,7 +604,7 @@ rdfnv1a.s: rdfnv1a.c.s
 
 # target to generate assembly for a file
 rdfnv1a.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdfnv1a.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdfnv1a.c.s
 .PHONY : rdfnv1a.c.s
 
 rdgz.o: rdgz.c.o
@@ -612,7 +612,7 @@ rdgz.o: rdgz.c.o
 
 # target to build an object file
 rdgz.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdgz.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdgz.c.o
 .PHONY : rdgz.c.o
 
 rdgz.i: rdgz.c.i
@@ -620,7 +620,7 @@ rdgz.i: rdgz.c.i
 
 # target to preprocess a source file
 rdgz.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdgz.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdgz.c.i
 .PHONY : rdgz.c.i
 
 rdgz.s: rdgz.c.s
@@ -628,7 +628,7 @@ rdgz.s: rdgz.c.s
 
 # target to generate assembly for a file
 rdgz.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdgz.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdgz.c.s
 .PHONY : rdgz.c.s
 
 rdhdrhistogram.o: rdhdrhistogram.c.o
@@ -636,7 +636,7 @@ rdhdrhistogram.o: rdhdrhistogram.c.o
 
 # target to build an object file
 rdhdrhistogram.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdhdrhistogram.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdhdrhistogram.c.o
 .PHONY : rdhdrhistogram.c.o
 
 rdhdrhistogram.i: rdhdrhistogram.c.i
@@ -644,7 +644,7 @@ rdhdrhistogram.i: rdhdrhistogram.c.i
 
 # target to preprocess a source file
 rdhdrhistogram.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdhdrhistogram.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdhdrhistogram.c.i
 .PHONY : rdhdrhistogram.c.i
 
 rdhdrhistogram.s: rdhdrhistogram.c.s
@@ -652,7 +652,7 @@ rdhdrhistogram.s: rdhdrhistogram.c.s
 
 # target to generate assembly for a file
 rdhdrhistogram.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdhdrhistogram.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdhdrhistogram.c.s
 .PHONY : rdhdrhistogram.c.s
 
 rdkafka.o: rdkafka.c.o
@@ -660,7 +660,7 @@ rdkafka.o: rdkafka.c.o
 
 # target to build an object file
 rdkafka.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka.c.o
 .PHONY : rdkafka.c.o
 
 rdkafka.i: rdkafka.c.i
@@ -668,7 +668,7 @@ rdkafka.i: rdkafka.c.i
 
 # target to preprocess a source file
 rdkafka.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka.c.i
 .PHONY : rdkafka.c.i
 
 rdkafka.s: rdkafka.c.s
@@ -676,7 +676,7 @@ rdkafka.s: rdkafka.c.s
 
 # target to generate assembly for a file
 rdkafka.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka.c.s
 .PHONY : rdkafka.c.s
 
 rdkafka_admin.o: rdkafka_admin.c.o
@@ -684,7 +684,7 @@ rdkafka_admin.o: rdkafka_admin.c.o
 
 # target to build an object file
 rdkafka_admin.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_admin.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_admin.c.o
 .PHONY : rdkafka_admin.c.o
 
 rdkafka_admin.i: rdkafka_admin.c.i
@@ -692,7 +692,7 @@ rdkafka_admin.i: rdkafka_admin.c.i
 
 # target to preprocess a source file
 rdkafka_admin.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_admin.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_admin.c.i
 .PHONY : rdkafka_admin.c.i
 
 rdkafka_admin.s: rdkafka_admin.c.s
@@ -700,7 +700,7 @@ rdkafka_admin.s: rdkafka_admin.c.s
 
 # target to generate assembly for a file
 rdkafka_admin.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_admin.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_admin.c.s
 .PHONY : rdkafka_admin.c.s
 
 rdkafka_assignment.o: rdkafka_assignment.c.o
@@ -708,7 +708,7 @@ rdkafka_assignment.o: rdkafka_assignment.c.o
 
 # target to build an object file
 rdkafka_assignment.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_assignment.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_assignment.c.o
 .PHONY : rdkafka_assignment.c.o
 
 rdkafka_assignment.i: rdkafka_assignment.c.i
@@ -716,7 +716,7 @@ rdkafka_assignment.i: rdkafka_assignment.c.i
 
 # target to preprocess a source file
 rdkafka_assignment.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_assignment.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_assignment.c.i
 .PHONY : rdkafka_assignment.c.i
 
 rdkafka_assignment.s: rdkafka_assignment.c.s
@@ -724,7 +724,7 @@ rdkafka_assignment.s: rdkafka_assignment.c.s
 
 # target to generate assembly for a file
 rdkafka_assignment.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_assignment.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_assignment.c.s
 .PHONY : rdkafka_assignment.c.s
 
 rdkafka_assignor.o: rdkafka_assignor.c.o
@@ -732,7 +732,7 @@ rdkafka_assignor.o: rdkafka_assignor.c.o
 
 # target to build an object file
 rdkafka_assignor.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_assignor.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_assignor.c.o
 .PHONY : rdkafka_assignor.c.o
 
 rdkafka_assignor.i: rdkafka_assignor.c.i
@@ -740,7 +740,7 @@ rdkafka_assignor.i: rdkafka_assignor.c.i
 
 # target to preprocess a source file
 rdkafka_assignor.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_assignor.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_assignor.c.i
 .PHONY : rdkafka_assignor.c.i
 
 rdkafka_assignor.s: rdkafka_assignor.c.s
@@ -748,7 +748,7 @@ rdkafka_assignor.s: rdkafka_assignor.c.s
 
 # target to generate assembly for a file
 rdkafka_assignor.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_assignor.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_assignor.c.s
 .PHONY : rdkafka_assignor.c.s
 
 rdkafka_aux.o: rdkafka_aux.c.o
@@ -756,7 +756,7 @@ rdkafka_aux.o: rdkafka_aux.c.o
 
 # target to build an object file
 rdkafka_aux.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_aux.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_aux.c.o
 .PHONY : rdkafka_aux.c.o
 
 rdkafka_aux.i: rdkafka_aux.c.i
@@ -764,7 +764,7 @@ rdkafka_aux.i: rdkafka_aux.c.i
 
 # target to preprocess a source file
 rdkafka_aux.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_aux.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_aux.c.i
 .PHONY : rdkafka_aux.c.i
 
 rdkafka_aux.s: rdkafka_aux.c.s
@@ -772,7 +772,7 @@ rdkafka_aux.s: rdkafka_aux.c.s
 
 # target to generate assembly for a file
 rdkafka_aux.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_aux.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_aux.c.s
 .PHONY : rdkafka_aux.c.s
 
 rdkafka_background.o: rdkafka_background.c.o
@@ -780,7 +780,7 @@ rdkafka_background.o: rdkafka_background.c.o
 
 # target to build an object file
 rdkafka_background.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_background.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_background.c.o
 .PHONY : rdkafka_background.c.o
 
 rdkafka_background.i: rdkafka_background.c.i
@@ -788,7 +788,7 @@ rdkafka_background.i: rdkafka_background.c.i
 
 # target to preprocess a source file
 rdkafka_background.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_background.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_background.c.i
 .PHONY : rdkafka_background.c.i
 
 rdkafka_background.s: rdkafka_background.c.s
@@ -796,7 +796,7 @@ rdkafka_background.s: rdkafka_background.c.s
 
 # target to generate assembly for a file
 rdkafka_background.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_background.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_background.c.s
 .PHONY : rdkafka_background.c.s
 
 rdkafka_broker.o: rdkafka_broker.c.o
@@ -804,7 +804,7 @@ rdkafka_broker.o: rdkafka_broker.c.o
 
 # target to build an object file
 rdkafka_broker.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_broker.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_broker.c.o
 .PHONY : rdkafka_broker.c.o
 
 rdkafka_broker.i: rdkafka_broker.c.i
@@ -812,7 +812,7 @@ rdkafka_broker.i: rdkafka_broker.c.i
 
 # target to preprocess a source file
 rdkafka_broker.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_broker.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_broker.c.i
 .PHONY : rdkafka_broker.c.i
 
 rdkafka_broker.s: rdkafka_broker.c.s
@@ -820,7 +820,7 @@ rdkafka_broker.s: rdkafka_broker.c.s
 
 # target to generate assembly for a file
 rdkafka_broker.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_broker.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_broker.c.s
 .PHONY : rdkafka_broker.c.s
 
 rdkafka_buf.o: rdkafka_buf.c.o
@@ -828,7 +828,7 @@ rdkafka_buf.o: rdkafka_buf.c.o
 
 # target to build an object file
 rdkafka_buf.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_buf.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_buf.c.o
 .PHONY : rdkafka_buf.c.o
 
 rdkafka_buf.i: rdkafka_buf.c.i
@@ -836,7 +836,7 @@ rdkafka_buf.i: rdkafka_buf.c.i
 
 # target to preprocess a source file
 rdkafka_buf.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_buf.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_buf.c.i
 .PHONY : rdkafka_buf.c.i
 
 rdkafka_buf.s: rdkafka_buf.c.s
@@ -844,7 +844,7 @@ rdkafka_buf.s: rdkafka_buf.c.s
 
 # target to generate assembly for a file
 rdkafka_buf.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_buf.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_buf.c.s
 .PHONY : rdkafka_buf.c.s
 
 rdkafka_cert.o: rdkafka_cert.c.o
@@ -852,7 +852,7 @@ rdkafka_cert.o: rdkafka_cert.c.o
 
 # target to build an object file
 rdkafka_cert.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_cert.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_cert.c.o
 .PHONY : rdkafka_cert.c.o
 
 rdkafka_cert.i: rdkafka_cert.c.i
@@ -860,7 +860,7 @@ rdkafka_cert.i: rdkafka_cert.c.i
 
 # target to preprocess a source file
 rdkafka_cert.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_cert.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_cert.c.i
 .PHONY : rdkafka_cert.c.i
 
 rdkafka_cert.s: rdkafka_cert.c.s
@@ -868,7 +868,7 @@ rdkafka_cert.s: rdkafka_cert.c.s
 
 # target to generate assembly for a file
 rdkafka_cert.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_cert.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_cert.c.s
 .PHONY : rdkafka_cert.c.s
 
 rdkafka_cgrp.o: rdkafka_cgrp.c.o
@@ -876,7 +876,7 @@ rdkafka_cgrp.o: rdkafka_cgrp.c.o
 
 # target to build an object file
 rdkafka_cgrp.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_cgrp.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_cgrp.c.o
 .PHONY : rdkafka_cgrp.c.o
 
 rdkafka_cgrp.i: rdkafka_cgrp.c.i
@@ -884,7 +884,7 @@ rdkafka_cgrp.i: rdkafka_cgrp.c.i
 
 # target to preprocess a source file
 rdkafka_cgrp.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_cgrp.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_cgrp.c.i
 .PHONY : rdkafka_cgrp.c.i
 
 rdkafka_cgrp.s: rdkafka_cgrp.c.s
@@ -892,7 +892,7 @@ rdkafka_cgrp.s: rdkafka_cgrp.c.s
 
 # target to generate assembly for a file
 rdkafka_cgrp.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_cgrp.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_cgrp.c.s
 .PHONY : rdkafka_cgrp.c.s
 
 rdkafka_conf.o: rdkafka_conf.c.o
@@ -900,7 +900,7 @@ rdkafka_conf.o: rdkafka_conf.c.o
 
 # target to build an object file
 rdkafka_conf.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_conf.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_conf.c.o
 .PHONY : rdkafka_conf.c.o
 
 rdkafka_conf.i: rdkafka_conf.c.i
@@ -908,7 +908,7 @@ rdkafka_conf.i: rdkafka_conf.c.i
 
 # target to preprocess a source file
 rdkafka_conf.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_conf.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_conf.c.i
 .PHONY : rdkafka_conf.c.i
 
 rdkafka_conf.s: rdkafka_conf.c.s
@@ -916,7 +916,7 @@ rdkafka_conf.s: rdkafka_conf.c.s
 
 # target to generate assembly for a file
 rdkafka_conf.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_conf.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_conf.c.s
 .PHONY : rdkafka_conf.c.s
 
 rdkafka_coord.o: rdkafka_coord.c.o
@@ -924,7 +924,7 @@ rdkafka_coord.o: rdkafka_coord.c.o
 
 # target to build an object file
 rdkafka_coord.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_coord.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_coord.c.o
 .PHONY : rdkafka_coord.c.o
 
 rdkafka_coord.i: rdkafka_coord.c.i
@@ -932,7 +932,7 @@ rdkafka_coord.i: rdkafka_coord.c.i
 
 # target to preprocess a source file
 rdkafka_coord.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_coord.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_coord.c.i
 .PHONY : rdkafka_coord.c.i
 
 rdkafka_coord.s: rdkafka_coord.c.s
@@ -940,7 +940,7 @@ rdkafka_coord.s: rdkafka_coord.c.s
 
 # target to generate assembly for a file
 rdkafka_coord.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_coord.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_coord.c.s
 .PHONY : rdkafka_coord.c.s
 
 rdkafka_error.o: rdkafka_error.c.o
@@ -948,7 +948,7 @@ rdkafka_error.o: rdkafka_error.c.o
 
 # target to build an object file
 rdkafka_error.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_error.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_error.c.o
 .PHONY : rdkafka_error.c.o
 
 rdkafka_error.i: rdkafka_error.c.i
@@ -956,7 +956,7 @@ rdkafka_error.i: rdkafka_error.c.i
 
 # target to preprocess a source file
 rdkafka_error.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_error.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_error.c.i
 .PHONY : rdkafka_error.c.i
 
 rdkafka_error.s: rdkafka_error.c.s
@@ -964,7 +964,7 @@ rdkafka_error.s: rdkafka_error.c.s
 
 # target to generate assembly for a file
 rdkafka_error.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_error.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_error.c.s
 .PHONY : rdkafka_error.c.s
 
 rdkafka_event.o: rdkafka_event.c.o
@@ -972,7 +972,7 @@ rdkafka_event.o: rdkafka_event.c.o
 
 # target to build an object file
 rdkafka_event.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_event.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_event.c.o
 .PHONY : rdkafka_event.c.o
 
 rdkafka_event.i: rdkafka_event.c.i
@@ -980,7 +980,7 @@ rdkafka_event.i: rdkafka_event.c.i
 
 # target to preprocess a source file
 rdkafka_event.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_event.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_event.c.i
 .PHONY : rdkafka_event.c.i
 
 rdkafka_event.s: rdkafka_event.c.s
@@ -988,7 +988,7 @@ rdkafka_event.s: rdkafka_event.c.s
 
 # target to generate assembly for a file
 rdkafka_event.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_event.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_event.c.s
 .PHONY : rdkafka_event.c.s
 
 rdkafka_feature.o: rdkafka_feature.c.o
@@ -996,7 +996,7 @@ rdkafka_feature.o: rdkafka_feature.c.o
 
 # target to build an object file
 rdkafka_feature.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_feature.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_feature.c.o
 .PHONY : rdkafka_feature.c.o
 
 rdkafka_feature.i: rdkafka_feature.c.i
@@ -1004,7 +1004,7 @@ rdkafka_feature.i: rdkafka_feature.c.i
 
 # target to preprocess a source file
 rdkafka_feature.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_feature.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_feature.c.i
 .PHONY : rdkafka_feature.c.i
 
 rdkafka_feature.s: rdkafka_feature.c.s
@@ -1012,7 +1012,7 @@ rdkafka_feature.s: rdkafka_feature.c.s
 
 # target to generate assembly for a file
 rdkafka_feature.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_feature.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_feature.c.s
 .PHONY : rdkafka_feature.c.s
 
 rdkafka_fetcher.o: rdkafka_fetcher.c.o
@@ -1020,7 +1020,7 @@ rdkafka_fetcher.o: rdkafka_fetcher.c.o
 
 # target to build an object file
 rdkafka_fetcher.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_fetcher.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_fetcher.c.o
 .PHONY : rdkafka_fetcher.c.o
 
 rdkafka_fetcher.i: rdkafka_fetcher.c.i
@@ -1028,7 +1028,7 @@ rdkafka_fetcher.i: rdkafka_fetcher.c.i
 
 # target to preprocess a source file
 rdkafka_fetcher.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_fetcher.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_fetcher.c.i
 .PHONY : rdkafka_fetcher.c.i
 
 rdkafka_fetcher.s: rdkafka_fetcher.c.s
@@ -1036,7 +1036,7 @@ rdkafka_fetcher.s: rdkafka_fetcher.c.s
 
 # target to generate assembly for a file
 rdkafka_fetcher.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_fetcher.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_fetcher.c.s
 .PHONY : rdkafka_fetcher.c.s
 
 rdkafka_header.o: rdkafka_header.c.o
@@ -1044,7 +1044,7 @@ rdkafka_header.o: rdkafka_header.c.o
 
 # target to build an object file
 rdkafka_header.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_header.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_header.c.o
 .PHONY : rdkafka_header.c.o
 
 rdkafka_header.i: rdkafka_header.c.i
@@ -1052,7 +1052,7 @@ rdkafka_header.i: rdkafka_header.c.i
 
 # target to preprocess a source file
 rdkafka_header.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_header.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_header.c.i
 .PHONY : rdkafka_header.c.i
 
 rdkafka_header.s: rdkafka_header.c.s
@@ -1060,7 +1060,7 @@ rdkafka_header.s: rdkafka_header.c.s
 
 # target to generate assembly for a file
 rdkafka_header.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_header.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_header.c.s
 .PHONY : rdkafka_header.c.s
 
 rdkafka_idempotence.o: rdkafka_idempotence.c.o
@@ -1068,7 +1068,7 @@ rdkafka_idempotence.o: rdkafka_idempotence.c.o
 
 # target to build an object file
 rdkafka_idempotence.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_idempotence.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_idempotence.c.o
 .PHONY : rdkafka_idempotence.c.o
 
 rdkafka_idempotence.i: rdkafka_idempotence.c.i
@@ -1076,7 +1076,7 @@ rdkafka_idempotence.i: rdkafka_idempotence.c.i
 
 # target to preprocess a source file
 rdkafka_idempotence.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_idempotence.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_idempotence.c.i
 .PHONY : rdkafka_idempotence.c.i
 
 rdkafka_idempotence.s: rdkafka_idempotence.c.s
@@ -1084,7 +1084,7 @@ rdkafka_idempotence.s: rdkafka_idempotence.c.s
 
 # target to generate assembly for a file
 rdkafka_idempotence.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_idempotence.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_idempotence.c.s
 .PHONY : rdkafka_idempotence.c.s
 
 rdkafka_interceptor.o: rdkafka_interceptor.c.o
@@ -1092,7 +1092,7 @@ rdkafka_interceptor.o: rdkafka_interceptor.c.o
 
 # target to build an object file
 rdkafka_interceptor.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_interceptor.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_interceptor.c.o
 .PHONY : rdkafka_interceptor.c.o
 
 rdkafka_interceptor.i: rdkafka_interceptor.c.i
@@ -1100,7 +1100,7 @@ rdkafka_interceptor.i: rdkafka_interceptor.c.i
 
 # target to preprocess a source file
 rdkafka_interceptor.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_interceptor.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_interceptor.c.i
 .PHONY : rdkafka_interceptor.c.i
 
 rdkafka_interceptor.s: rdkafka_interceptor.c.s
@@ -1108,7 +1108,7 @@ rdkafka_interceptor.s: rdkafka_interceptor.c.s
 
 # target to generate assembly for a file
 rdkafka_interceptor.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_interceptor.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_interceptor.c.s
 .PHONY : rdkafka_interceptor.c.s
 
 rdkafka_lz4.o: rdkafka_lz4.c.o
@@ -1116,7 +1116,7 @@ rdkafka_lz4.o: rdkafka_lz4.c.o
 
 # target to build an object file
 rdkafka_lz4.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_lz4.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_lz4.c.o
 .PHONY : rdkafka_lz4.c.o
 
 rdkafka_lz4.i: rdkafka_lz4.c.i
@@ -1124,7 +1124,7 @@ rdkafka_lz4.i: rdkafka_lz4.c.i
 
 # target to preprocess a source file
 rdkafka_lz4.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_lz4.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_lz4.c.i
 .PHONY : rdkafka_lz4.c.i
 
 rdkafka_lz4.s: rdkafka_lz4.c.s
@@ -1132,7 +1132,7 @@ rdkafka_lz4.s: rdkafka_lz4.c.s
 
 # target to generate assembly for a file
 rdkafka_lz4.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_lz4.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_lz4.c.s
 .PHONY : rdkafka_lz4.c.s
 
 rdkafka_metadata.o: rdkafka_metadata.c.o
@@ -1140,7 +1140,7 @@ rdkafka_metadata.o: rdkafka_metadata.c.o
 
 # target to build an object file
 rdkafka_metadata.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_metadata.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_metadata.c.o
 .PHONY : rdkafka_metadata.c.o
 
 rdkafka_metadata.i: rdkafka_metadata.c.i
@@ -1148,7 +1148,7 @@ rdkafka_metadata.i: rdkafka_metadata.c.i
 
 # target to preprocess a source file
 rdkafka_metadata.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_metadata.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_metadata.c.i
 .PHONY : rdkafka_metadata.c.i
 
 rdkafka_metadata.s: rdkafka_metadata.c.s
@@ -1156,7 +1156,7 @@ rdkafka_metadata.s: rdkafka_metadata.c.s
 
 # target to generate assembly for a file
 rdkafka_metadata.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_metadata.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_metadata.c.s
 .PHONY : rdkafka_metadata.c.s
 
 rdkafka_metadata_cache.o: rdkafka_metadata_cache.c.o
@@ -1164,7 +1164,7 @@ rdkafka_metadata_cache.o: rdkafka_metadata_cache.c.o
 
 # target to build an object file
 rdkafka_metadata_cache.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_metadata_cache.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_metadata_cache.c.o
 .PHONY : rdkafka_metadata_cache.c.o
 
 rdkafka_metadata_cache.i: rdkafka_metadata_cache.c.i
@@ -1172,7 +1172,7 @@ rdkafka_metadata_cache.i: rdkafka_metadata_cache.c.i
 
 # target to preprocess a source file
 rdkafka_metadata_cache.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_metadata_cache.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_metadata_cache.c.i
 .PHONY : rdkafka_metadata_cache.c.i
 
 rdkafka_metadata_cache.s: rdkafka_metadata_cache.c.s
@@ -1180,7 +1180,7 @@ rdkafka_metadata_cache.s: rdkafka_metadata_cache.c.s
 
 # target to generate assembly for a file
 rdkafka_metadata_cache.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_metadata_cache.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_metadata_cache.c.s
 .PHONY : rdkafka_metadata_cache.c.s
 
 rdkafka_mock.o: rdkafka_mock.c.o
@@ -1188,7 +1188,7 @@ rdkafka_mock.o: rdkafka_mock.c.o
 
 # target to build an object file
 rdkafka_mock.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock.c.o
 .PHONY : rdkafka_mock.c.o
 
 rdkafka_mock.i: rdkafka_mock.c.i
@@ -1196,7 +1196,7 @@ rdkafka_mock.i: rdkafka_mock.c.i
 
 # target to preprocess a source file
 rdkafka_mock.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock.c.i
 .PHONY : rdkafka_mock.c.i
 
 rdkafka_mock.s: rdkafka_mock.c.s
@@ -1204,7 +1204,7 @@ rdkafka_mock.s: rdkafka_mock.c.s
 
 # target to generate assembly for a file
 rdkafka_mock.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock.c.s
 .PHONY : rdkafka_mock.c.s
 
 rdkafka_mock_cgrp.o: rdkafka_mock_cgrp.c.o
@@ -1212,7 +1212,7 @@ rdkafka_mock_cgrp.o: rdkafka_mock_cgrp.c.o
 
 # target to build an object file
 rdkafka_mock_cgrp.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock_cgrp.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock_cgrp.c.o
 .PHONY : rdkafka_mock_cgrp.c.o
 
 rdkafka_mock_cgrp.i: rdkafka_mock_cgrp.c.i
@@ -1220,7 +1220,7 @@ rdkafka_mock_cgrp.i: rdkafka_mock_cgrp.c.i
 
 # target to preprocess a source file
 rdkafka_mock_cgrp.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock_cgrp.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock_cgrp.c.i
 .PHONY : rdkafka_mock_cgrp.c.i
 
 rdkafka_mock_cgrp.s: rdkafka_mock_cgrp.c.s
@@ -1228,7 +1228,7 @@ rdkafka_mock_cgrp.s: rdkafka_mock_cgrp.c.s
 
 # target to generate assembly for a file
 rdkafka_mock_cgrp.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock_cgrp.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock_cgrp.c.s
 .PHONY : rdkafka_mock_cgrp.c.s
 
 rdkafka_mock_handlers.o: rdkafka_mock_handlers.c.o
@@ -1236,7 +1236,7 @@ rdkafka_mock_handlers.o: rdkafka_mock_handlers.c.o
 
 # target to build an object file
 rdkafka_mock_handlers.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock_handlers.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock_handlers.c.o
 .PHONY : rdkafka_mock_handlers.c.o
 
 rdkafka_mock_handlers.i: rdkafka_mock_handlers.c.i
@@ -1244,7 +1244,7 @@ rdkafka_mock_handlers.i: rdkafka_mock_handlers.c.i
 
 # target to preprocess a source file
 rdkafka_mock_handlers.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock_handlers.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock_handlers.c.i
 .PHONY : rdkafka_mock_handlers.c.i
 
 rdkafka_mock_handlers.s: rdkafka_mock_handlers.c.s
@@ -1252,7 +1252,7 @@ rdkafka_mock_handlers.s: rdkafka_mock_handlers.c.s
 
 # target to generate assembly for a file
 rdkafka_mock_handlers.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock_handlers.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_mock_handlers.c.s
 .PHONY : rdkafka_mock_handlers.c.s
 
 rdkafka_msg.o: rdkafka_msg.c.o
@@ -1260,7 +1260,7 @@ rdkafka_msg.o: rdkafka_msg.c.o
 
 # target to build an object file
 rdkafka_msg.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msg.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msg.c.o
 .PHONY : rdkafka_msg.c.o
 
 rdkafka_msg.i: rdkafka_msg.c.i
@@ -1268,7 +1268,7 @@ rdkafka_msg.i: rdkafka_msg.c.i
 
 # target to preprocess a source file
 rdkafka_msg.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msg.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msg.c.i
 .PHONY : rdkafka_msg.c.i
 
 rdkafka_msg.s: rdkafka_msg.c.s
@@ -1276,7 +1276,7 @@ rdkafka_msg.s: rdkafka_msg.c.s
 
 # target to generate assembly for a file
 rdkafka_msg.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msg.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msg.c.s
 .PHONY : rdkafka_msg.c.s
 
 rdkafka_msgset_reader.o: rdkafka_msgset_reader.c.o
@@ -1284,7 +1284,7 @@ rdkafka_msgset_reader.o: rdkafka_msgset_reader.c.o
 
 # target to build an object file
 rdkafka_msgset_reader.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msgset_reader.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msgset_reader.c.o
 .PHONY : rdkafka_msgset_reader.c.o
 
 rdkafka_msgset_reader.i: rdkafka_msgset_reader.c.i
@@ -1292,7 +1292,7 @@ rdkafka_msgset_reader.i: rdkafka_msgset_reader.c.i
 
 # target to preprocess a source file
 rdkafka_msgset_reader.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msgset_reader.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msgset_reader.c.i
 .PHONY : rdkafka_msgset_reader.c.i
 
 rdkafka_msgset_reader.s: rdkafka_msgset_reader.c.s
@@ -1300,7 +1300,7 @@ rdkafka_msgset_reader.s: rdkafka_msgset_reader.c.s
 
 # target to generate assembly for a file
 rdkafka_msgset_reader.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msgset_reader.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msgset_reader.c.s
 .PHONY : rdkafka_msgset_reader.c.s
 
 rdkafka_msgset_writer.o: rdkafka_msgset_writer.c.o
@@ -1308,7 +1308,7 @@ rdkafka_msgset_writer.o: rdkafka_msgset_writer.c.o
 
 # target to build an object file
 rdkafka_msgset_writer.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msgset_writer.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msgset_writer.c.o
 .PHONY : rdkafka_msgset_writer.c.o
 
 rdkafka_msgset_writer.i: rdkafka_msgset_writer.c.i
@@ -1316,7 +1316,7 @@ rdkafka_msgset_writer.i: rdkafka_msgset_writer.c.i
 
 # target to preprocess a source file
 rdkafka_msgset_writer.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msgset_writer.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msgset_writer.c.i
 .PHONY : rdkafka_msgset_writer.c.i
 
 rdkafka_msgset_writer.s: rdkafka_msgset_writer.c.s
@@ -1324,7 +1324,7 @@ rdkafka_msgset_writer.s: rdkafka_msgset_writer.c.s
 
 # target to generate assembly for a file
 rdkafka_msgset_writer.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msgset_writer.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_msgset_writer.c.s
 .PHONY : rdkafka_msgset_writer.c.s
 
 rdkafka_offset.o: rdkafka_offset.c.o
@@ -1332,7 +1332,7 @@ rdkafka_offset.o: rdkafka_offset.c.o
 
 # target to build an object file
 rdkafka_offset.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_offset.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_offset.c.o
 .PHONY : rdkafka_offset.c.o
 
 rdkafka_offset.i: rdkafka_offset.c.i
@@ -1340,7 +1340,7 @@ rdkafka_offset.i: rdkafka_offset.c.i
 
 # target to preprocess a source file
 rdkafka_offset.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_offset.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_offset.c.i
 .PHONY : rdkafka_offset.c.i
 
 rdkafka_offset.s: rdkafka_offset.c.s
@@ -1348,7 +1348,7 @@ rdkafka_offset.s: rdkafka_offset.c.s
 
 # target to generate assembly for a file
 rdkafka_offset.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_offset.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_offset.c.s
 .PHONY : rdkafka_offset.c.s
 
 rdkafka_op.o: rdkafka_op.c.o
@@ -1356,7 +1356,7 @@ rdkafka_op.o: rdkafka_op.c.o
 
 # target to build an object file
 rdkafka_op.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_op.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_op.c.o
 .PHONY : rdkafka_op.c.o
 
 rdkafka_op.i: rdkafka_op.c.i
@@ -1364,7 +1364,7 @@ rdkafka_op.i: rdkafka_op.c.i
 
 # target to preprocess a source file
 rdkafka_op.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_op.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_op.c.i
 .PHONY : rdkafka_op.c.i
 
 rdkafka_op.s: rdkafka_op.c.s
@@ -1372,7 +1372,7 @@ rdkafka_op.s: rdkafka_op.c.s
 
 # target to generate assembly for a file
 rdkafka_op.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_op.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_op.c.s
 .PHONY : rdkafka_op.c.s
 
 rdkafka_partition.o: rdkafka_partition.c.o
@@ -1380,7 +1380,7 @@ rdkafka_partition.o: rdkafka_partition.c.o
 
 # target to build an object file
 rdkafka_partition.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_partition.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_partition.c.o
 .PHONY : rdkafka_partition.c.o
 
 rdkafka_partition.i: rdkafka_partition.c.i
@@ -1388,7 +1388,7 @@ rdkafka_partition.i: rdkafka_partition.c.i
 
 # target to preprocess a source file
 rdkafka_partition.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_partition.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_partition.c.i
 .PHONY : rdkafka_partition.c.i
 
 rdkafka_partition.s: rdkafka_partition.c.s
@@ -1396,7 +1396,7 @@ rdkafka_partition.s: rdkafka_partition.c.s
 
 # target to generate assembly for a file
 rdkafka_partition.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_partition.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_partition.c.s
 .PHONY : rdkafka_partition.c.s
 
 rdkafka_pattern.o: rdkafka_pattern.c.o
@@ -1404,7 +1404,7 @@ rdkafka_pattern.o: rdkafka_pattern.c.o
 
 # target to build an object file
 rdkafka_pattern.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_pattern.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_pattern.c.o
 .PHONY : rdkafka_pattern.c.o
 
 rdkafka_pattern.i: rdkafka_pattern.c.i
@@ -1412,7 +1412,7 @@ rdkafka_pattern.i: rdkafka_pattern.c.i
 
 # target to preprocess a source file
 rdkafka_pattern.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_pattern.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_pattern.c.i
 .PHONY : rdkafka_pattern.c.i
 
 rdkafka_pattern.s: rdkafka_pattern.c.s
@@ -1420,7 +1420,7 @@ rdkafka_pattern.s: rdkafka_pattern.c.s
 
 # target to generate assembly for a file
 rdkafka_pattern.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_pattern.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_pattern.c.s
 .PHONY : rdkafka_pattern.c.s
 
 rdkafka_plugin.o: rdkafka_plugin.c.o
@@ -1428,7 +1428,7 @@ rdkafka_plugin.o: rdkafka_plugin.c.o
 
 # target to build an object file
 rdkafka_plugin.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_plugin.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_plugin.c.o
 .PHONY : rdkafka_plugin.c.o
 
 rdkafka_plugin.i: rdkafka_plugin.c.i
@@ -1436,7 +1436,7 @@ rdkafka_plugin.i: rdkafka_plugin.c.i
 
 # target to preprocess a source file
 rdkafka_plugin.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_plugin.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_plugin.c.i
 .PHONY : rdkafka_plugin.c.i
 
 rdkafka_plugin.s: rdkafka_plugin.c.s
@@ -1444,7 +1444,7 @@ rdkafka_plugin.s: rdkafka_plugin.c.s
 
 # target to generate assembly for a file
 rdkafka_plugin.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_plugin.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_plugin.c.s
 .PHONY : rdkafka_plugin.c.s
 
 rdkafka_queue.o: rdkafka_queue.c.o
@@ -1452,7 +1452,7 @@ rdkafka_queue.o: rdkafka_queue.c.o
 
 # target to build an object file
 rdkafka_queue.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_queue.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_queue.c.o
 .PHONY : rdkafka_queue.c.o
 
 rdkafka_queue.i: rdkafka_queue.c.i
@@ -1460,7 +1460,7 @@ rdkafka_queue.i: rdkafka_queue.c.i
 
 # target to preprocess a source file
 rdkafka_queue.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_queue.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_queue.c.i
 .PHONY : rdkafka_queue.c.i
 
 rdkafka_queue.s: rdkafka_queue.c.s
@@ -1468,7 +1468,7 @@ rdkafka_queue.s: rdkafka_queue.c.s
 
 # target to generate assembly for a file
 rdkafka_queue.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_queue.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_queue.c.s
 .PHONY : rdkafka_queue.c.s
 
 rdkafka_range_assignor.o: rdkafka_range_assignor.c.o
@@ -1476,7 +1476,7 @@ rdkafka_range_assignor.o: rdkafka_range_assignor.c.o
 
 # target to build an object file
 rdkafka_range_assignor.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_range_assignor.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_range_assignor.c.o
 .PHONY : rdkafka_range_assignor.c.o
 
 rdkafka_range_assignor.i: rdkafka_range_assignor.c.i
@@ -1484,7 +1484,7 @@ rdkafka_range_assignor.i: rdkafka_range_assignor.c.i
 
 # target to preprocess a source file
 rdkafka_range_assignor.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_range_assignor.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_range_assignor.c.i
 .PHONY : rdkafka_range_assignor.c.i
 
 rdkafka_range_assignor.s: rdkafka_range_assignor.c.s
@@ -1492,7 +1492,7 @@ rdkafka_range_assignor.s: rdkafka_range_assignor.c.s
 
 # target to generate assembly for a file
 rdkafka_range_assignor.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_range_assignor.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_range_assignor.c.s
 .PHONY : rdkafka_range_assignor.c.s
 
 rdkafka_request.o: rdkafka_request.c.o
@@ -1500,7 +1500,7 @@ rdkafka_request.o: rdkafka_request.c.o
 
 # target to build an object file
 rdkafka_request.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_request.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_request.c.o
 .PHONY : rdkafka_request.c.o
 
 rdkafka_request.i: rdkafka_request.c.i
@@ -1508,7 +1508,7 @@ rdkafka_request.i: rdkafka_request.c.i
 
 # target to preprocess a source file
 rdkafka_request.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_request.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_request.c.i
 .PHONY : rdkafka_request.c.i
 
 rdkafka_request.s: rdkafka_request.c.s
@@ -1516,7 +1516,7 @@ rdkafka_request.s: rdkafka_request.c.s
 
 # target to generate assembly for a file
 rdkafka_request.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_request.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_request.c.s
 .PHONY : rdkafka_request.c.s
 
 rdkafka_roundrobin_assignor.o: rdkafka_roundrobin_assignor.c.o
@@ -1524,7 +1524,7 @@ rdkafka_roundrobin_assignor.o: rdkafka_roundrobin_assignor.c.o
 
 # target to build an object file
 rdkafka_roundrobin_assignor.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_roundrobin_assignor.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_roundrobin_assignor.c.o
 .PHONY : rdkafka_roundrobin_assignor.c.o
 
 rdkafka_roundrobin_assignor.i: rdkafka_roundrobin_assignor.c.i
@@ -1532,7 +1532,7 @@ rdkafka_roundrobin_assignor.i: rdkafka_roundrobin_assignor.c.i
 
 # target to preprocess a source file
 rdkafka_roundrobin_assignor.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_roundrobin_assignor.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_roundrobin_assignor.c.i
 .PHONY : rdkafka_roundrobin_assignor.c.i
 
 rdkafka_roundrobin_assignor.s: rdkafka_roundrobin_assignor.c.s
@@ -1540,7 +1540,7 @@ rdkafka_roundrobin_assignor.s: rdkafka_roundrobin_assignor.c.s
 
 # target to generate assembly for a file
 rdkafka_roundrobin_assignor.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_roundrobin_assignor.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_roundrobin_assignor.c.s
 .PHONY : rdkafka_roundrobin_assignor.c.s
 
 rdkafka_sasl.o: rdkafka_sasl.c.o
@@ -1548,7 +1548,7 @@ rdkafka_sasl.o: rdkafka_sasl.c.o
 
 # target to build an object file
 rdkafka_sasl.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sasl.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sasl.c.o
 .PHONY : rdkafka_sasl.c.o
 
 rdkafka_sasl.i: rdkafka_sasl.c.i
@@ -1556,7 +1556,7 @@ rdkafka_sasl.i: rdkafka_sasl.c.i
 
 # target to preprocess a source file
 rdkafka_sasl.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sasl.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sasl.c.i
 .PHONY : rdkafka_sasl.c.i
 
 rdkafka_sasl.s: rdkafka_sasl.c.s
@@ -1564,7 +1564,7 @@ rdkafka_sasl.s: rdkafka_sasl.c.s
 
 # target to generate assembly for a file
 rdkafka_sasl.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sasl.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sasl.c.s
 .PHONY : rdkafka_sasl.c.s
 
 rdkafka_sasl_plain.o: rdkafka_sasl_plain.c.o
@@ -1572,7 +1572,7 @@ rdkafka_sasl_plain.o: rdkafka_sasl_plain.c.o
 
 # target to build an object file
 rdkafka_sasl_plain.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sasl_plain.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sasl_plain.c.o
 .PHONY : rdkafka_sasl_plain.c.o
 
 rdkafka_sasl_plain.i: rdkafka_sasl_plain.c.i
@@ -1580,7 +1580,7 @@ rdkafka_sasl_plain.i: rdkafka_sasl_plain.c.i
 
 # target to preprocess a source file
 rdkafka_sasl_plain.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sasl_plain.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sasl_plain.c.i
 .PHONY : rdkafka_sasl_plain.c.i
 
 rdkafka_sasl_plain.s: rdkafka_sasl_plain.c.s
@@ -1588,7 +1588,7 @@ rdkafka_sasl_plain.s: rdkafka_sasl_plain.c.s
 
 # target to generate assembly for a file
 rdkafka_sasl_plain.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sasl_plain.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sasl_plain.c.s
 .PHONY : rdkafka_sasl_plain.c.s
 
 rdkafka_sticky_assignor.o: rdkafka_sticky_assignor.c.o
@@ -1596,7 +1596,7 @@ rdkafka_sticky_assignor.o: rdkafka_sticky_assignor.c.o
 
 # target to build an object file
 rdkafka_sticky_assignor.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sticky_assignor.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sticky_assignor.c.o
 .PHONY : rdkafka_sticky_assignor.c.o
 
 rdkafka_sticky_assignor.i: rdkafka_sticky_assignor.c.i
@@ -1604,7 +1604,7 @@ rdkafka_sticky_assignor.i: rdkafka_sticky_assignor.c.i
 
 # target to preprocess a source file
 rdkafka_sticky_assignor.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sticky_assignor.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sticky_assignor.c.i
 .PHONY : rdkafka_sticky_assignor.c.i
 
 rdkafka_sticky_assignor.s: rdkafka_sticky_assignor.c.s
@@ -1612,7 +1612,7 @@ rdkafka_sticky_assignor.s: rdkafka_sticky_assignor.c.s
 
 # target to generate assembly for a file
 rdkafka_sticky_assignor.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sticky_assignor.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_sticky_assignor.c.s
 .PHONY : rdkafka_sticky_assignor.c.s
 
 rdkafka_subscription.o: rdkafka_subscription.c.o
@@ -1620,7 +1620,7 @@ rdkafka_subscription.o: rdkafka_subscription.c.o
 
 # target to build an object file
 rdkafka_subscription.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_subscription.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_subscription.c.o
 .PHONY : rdkafka_subscription.c.o
 
 rdkafka_subscription.i: rdkafka_subscription.c.i
@@ -1628,7 +1628,7 @@ rdkafka_subscription.i: rdkafka_subscription.c.i
 
 # target to preprocess a source file
 rdkafka_subscription.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_subscription.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_subscription.c.i
 .PHONY : rdkafka_subscription.c.i
 
 rdkafka_subscription.s: rdkafka_subscription.c.s
@@ -1636,7 +1636,7 @@ rdkafka_subscription.s: rdkafka_subscription.c.s
 
 # target to generate assembly for a file
 rdkafka_subscription.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_subscription.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_subscription.c.s
 .PHONY : rdkafka_subscription.c.s
 
 rdkafka_telemetry.o: rdkafka_telemetry.c.o
@@ -1644,7 +1644,7 @@ rdkafka_telemetry.o: rdkafka_telemetry.c.o
 
 # target to build an object file
 rdkafka_telemetry.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry.c.o
 .PHONY : rdkafka_telemetry.c.o
 
 rdkafka_telemetry.i: rdkafka_telemetry.c.i
@@ -1652,7 +1652,7 @@ rdkafka_telemetry.i: rdkafka_telemetry.c.i
 
 # target to preprocess a source file
 rdkafka_telemetry.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry.c.i
 .PHONY : rdkafka_telemetry.c.i
 
 rdkafka_telemetry.s: rdkafka_telemetry.c.s
@@ -1660,7 +1660,7 @@ rdkafka_telemetry.s: rdkafka_telemetry.c.s
 
 # target to generate assembly for a file
 rdkafka_telemetry.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry.c.s
 .PHONY : rdkafka_telemetry.c.s
 
 rdkafka_telemetry_decode.o: rdkafka_telemetry_decode.c.o
@@ -1668,7 +1668,7 @@ rdkafka_telemetry_decode.o: rdkafka_telemetry_decode.c.o
 
 # target to build an object file
 rdkafka_telemetry_decode.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry_decode.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry_decode.c.o
 .PHONY : rdkafka_telemetry_decode.c.o
 
 rdkafka_telemetry_decode.i: rdkafka_telemetry_decode.c.i
@@ -1676,7 +1676,7 @@ rdkafka_telemetry_decode.i: rdkafka_telemetry_decode.c.i
 
 # target to preprocess a source file
 rdkafka_telemetry_decode.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry_decode.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry_decode.c.i
 .PHONY : rdkafka_telemetry_decode.c.i
 
 rdkafka_telemetry_decode.s: rdkafka_telemetry_decode.c.s
@@ -1684,7 +1684,7 @@ rdkafka_telemetry_decode.s: rdkafka_telemetry_decode.c.s
 
 # target to generate assembly for a file
 rdkafka_telemetry_decode.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry_decode.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry_decode.c.s
 .PHONY : rdkafka_telemetry_decode.c.s
 
 rdkafka_telemetry_encode.o: rdkafka_telemetry_encode.c.o
@@ -1692,7 +1692,7 @@ rdkafka_telemetry_encode.o: rdkafka_telemetry_encode.c.o
 
 # target to build an object file
 rdkafka_telemetry_encode.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry_encode.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry_encode.c.o
 .PHONY : rdkafka_telemetry_encode.c.o
 
 rdkafka_telemetry_encode.i: rdkafka_telemetry_encode.c.i
@@ -1700,7 +1700,7 @@ rdkafka_telemetry_encode.i: rdkafka_telemetry_encode.c.i
 
 # target to preprocess a source file
 rdkafka_telemetry_encode.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry_encode.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry_encode.c.i
 .PHONY : rdkafka_telemetry_encode.c.i
 
 rdkafka_telemetry_encode.s: rdkafka_telemetry_encode.c.s
@@ -1708,7 +1708,7 @@ rdkafka_telemetry_encode.s: rdkafka_telemetry_encode.c.s
 
 # target to generate assembly for a file
 rdkafka_telemetry_encode.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry_encode.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_telemetry_encode.c.s
 .PHONY : rdkafka_telemetry_encode.c.s
 
 rdkafka_timer.o: rdkafka_timer.c.o
@@ -1716,7 +1716,7 @@ rdkafka_timer.o: rdkafka_timer.c.o
 
 # target to build an object file
 rdkafka_timer.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_timer.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_timer.c.o
 .PHONY : rdkafka_timer.c.o
 
 rdkafka_timer.i: rdkafka_timer.c.i
@@ -1724,7 +1724,7 @@ rdkafka_timer.i: rdkafka_timer.c.i
 
 # target to preprocess a source file
 rdkafka_timer.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_timer.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_timer.c.i
 .PHONY : rdkafka_timer.c.i
 
 rdkafka_timer.s: rdkafka_timer.c.s
@@ -1732,7 +1732,7 @@ rdkafka_timer.s: rdkafka_timer.c.s
 
 # target to generate assembly for a file
 rdkafka_timer.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_timer.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_timer.c.s
 .PHONY : rdkafka_timer.c.s
 
 rdkafka_topic.o: rdkafka_topic.c.o
@@ -1740,7 +1740,7 @@ rdkafka_topic.o: rdkafka_topic.c.o
 
 # target to build an object file
 rdkafka_topic.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_topic.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_topic.c.o
 .PHONY : rdkafka_topic.c.o
 
 rdkafka_topic.i: rdkafka_topic.c.i
@@ -1748,7 +1748,7 @@ rdkafka_topic.i: rdkafka_topic.c.i
 
 # target to preprocess a source file
 rdkafka_topic.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_topic.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_topic.c.i
 .PHONY : rdkafka_topic.c.i
 
 rdkafka_topic.s: rdkafka_topic.c.s
@@ -1756,7 +1756,7 @@ rdkafka_topic.s: rdkafka_topic.c.s
 
 # target to generate assembly for a file
 rdkafka_topic.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_topic.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_topic.c.s
 .PHONY : rdkafka_topic.c.s
 
 rdkafka_transport.o: rdkafka_transport.c.o
@@ -1764,7 +1764,7 @@ rdkafka_transport.o: rdkafka_transport.c.o
 
 # target to build an object file
 rdkafka_transport.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_transport.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_transport.c.o
 .PHONY : rdkafka_transport.c.o
 
 rdkafka_transport.i: rdkafka_transport.c.i
@@ -1772,7 +1772,7 @@ rdkafka_transport.i: rdkafka_transport.c.i
 
 # target to preprocess a source file
 rdkafka_transport.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_transport.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_transport.c.i
 .PHONY : rdkafka_transport.c.i
 
 rdkafka_transport.s: rdkafka_transport.c.s
@@ -1780,7 +1780,7 @@ rdkafka_transport.s: rdkafka_transport.c.s
 
 # target to generate assembly for a file
 rdkafka_transport.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_transport.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_transport.c.s
 .PHONY : rdkafka_transport.c.s
 
 rdkafka_txnmgr.o: rdkafka_txnmgr.c.o
@@ -1788,7 +1788,7 @@ rdkafka_txnmgr.o: rdkafka_txnmgr.c.o
 
 # target to build an object file
 rdkafka_txnmgr.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_txnmgr.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_txnmgr.c.o
 .PHONY : rdkafka_txnmgr.c.o
 
 rdkafka_txnmgr.i: rdkafka_txnmgr.c.i
@@ -1796,7 +1796,7 @@ rdkafka_txnmgr.i: rdkafka_txnmgr.c.i
 
 # target to preprocess a source file
 rdkafka_txnmgr.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_txnmgr.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_txnmgr.c.i
 .PHONY : rdkafka_txnmgr.c.i
 
 rdkafka_txnmgr.s: rdkafka_txnmgr.c.s
@@ -1804,7 +1804,7 @@ rdkafka_txnmgr.s: rdkafka_txnmgr.c.s
 
 # target to generate assembly for a file
 rdkafka_txnmgr.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_txnmgr.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdkafka_txnmgr.c.s
 .PHONY : rdkafka_txnmgr.c.s
 
 rdlist.o: rdlist.c.o
@@ -1812,7 +1812,7 @@ rdlist.o: rdlist.c.o
 
 # target to build an object file
 rdlist.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdlist.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdlist.c.o
 .PHONY : rdlist.c.o
 
 rdlist.i: rdlist.c.i
@@ -1820,7 +1820,7 @@ rdlist.i: rdlist.c.i
 
 # target to preprocess a source file
 rdlist.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdlist.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdlist.c.i
 .PHONY : rdlist.c.i
 
 rdlist.s: rdlist.c.s
@@ -1828,7 +1828,7 @@ rdlist.s: rdlist.c.s
 
 # target to generate assembly for a file
 rdlist.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdlist.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdlist.c.s
 .PHONY : rdlist.c.s
 
 rdlog.o: rdlog.c.o
@@ -1836,7 +1836,7 @@ rdlog.o: rdlog.c.o
 
 # target to build an object file
 rdlog.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdlog.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdlog.c.o
 .PHONY : rdlog.c.o
 
 rdlog.i: rdlog.c.i
@@ -1844,7 +1844,7 @@ rdlog.i: rdlog.c.i
 
 # target to preprocess a source file
 rdlog.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdlog.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdlog.c.i
 .PHONY : rdlog.c.i
 
 rdlog.s: rdlog.c.s
@@ -1852,7 +1852,7 @@ rdlog.s: rdlog.c.s
 
 # target to generate assembly for a file
 rdlog.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdlog.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdlog.c.s
 .PHONY : rdlog.c.s
 
 rdmap.o: rdmap.c.o
@@ -1860,7 +1860,7 @@ rdmap.o: rdmap.c.o
 
 # target to build an object file
 rdmap.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdmap.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdmap.c.o
 .PHONY : rdmap.c.o
 
 rdmap.i: rdmap.c.i
@@ -1868,7 +1868,7 @@ rdmap.i: rdmap.c.i
 
 # target to preprocess a source file
 rdmap.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdmap.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdmap.c.i
 .PHONY : rdmap.c.i
 
 rdmap.s: rdmap.c.s
@@ -1876,7 +1876,7 @@ rdmap.s: rdmap.c.s
 
 # target to generate assembly for a file
 rdmap.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdmap.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdmap.c.s
 .PHONY : rdmap.c.s
 
 rdmurmur2.o: rdmurmur2.c.o
@@ -1884,7 +1884,7 @@ rdmurmur2.o: rdmurmur2.c.o
 
 # target to build an object file
 rdmurmur2.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdmurmur2.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdmurmur2.c.o
 .PHONY : rdmurmur2.c.o
 
 rdmurmur2.i: rdmurmur2.c.i
@@ -1892,7 +1892,7 @@ rdmurmur2.i: rdmurmur2.c.i
 
 # target to preprocess a source file
 rdmurmur2.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdmurmur2.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdmurmur2.c.i
 .PHONY : rdmurmur2.c.i
 
 rdmurmur2.s: rdmurmur2.c.s
@@ -1900,7 +1900,7 @@ rdmurmur2.s: rdmurmur2.c.s
 
 # target to generate assembly for a file
 rdmurmur2.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdmurmur2.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdmurmur2.c.s
 .PHONY : rdmurmur2.c.s
 
 rdports.o: rdports.c.o
@@ -1908,7 +1908,7 @@ rdports.o: rdports.c.o
 
 # target to build an object file
 rdports.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdports.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdports.c.o
 .PHONY : rdports.c.o
 
 rdports.i: rdports.c.i
@@ -1916,7 +1916,7 @@ rdports.i: rdports.c.i
 
 # target to preprocess a source file
 rdports.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdports.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdports.c.i
 .PHONY : rdports.c.i
 
 rdports.s: rdports.c.s
@@ -1924,7 +1924,7 @@ rdports.s: rdports.c.s
 
 # target to generate assembly for a file
 rdports.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdports.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdports.c.s
 .PHONY : rdports.c.s
 
 rdrand.o: rdrand.c.o
@@ -1932,7 +1932,7 @@ rdrand.o: rdrand.c.o
 
 # target to build an object file
 rdrand.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdrand.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdrand.c.o
 .PHONY : rdrand.c.o
 
 rdrand.i: rdrand.c.i
@@ -1940,7 +1940,7 @@ rdrand.i: rdrand.c.i
 
 # target to preprocess a source file
 rdrand.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdrand.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdrand.c.i
 .PHONY : rdrand.c.i
 
 rdrand.s: rdrand.c.s
@@ -1948,7 +1948,7 @@ rdrand.s: rdrand.c.s
 
 # target to generate assembly for a file
 rdrand.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdrand.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdrand.c.s
 .PHONY : rdrand.c.s
 
 rdregex.o: rdregex.c.o
@@ -1956,7 +1956,7 @@ rdregex.o: rdregex.c.o
 
 # target to build an object file
 rdregex.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdregex.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdregex.c.o
 .PHONY : rdregex.c.o
 
 rdregex.i: rdregex.c.i
@@ -1964,7 +1964,7 @@ rdregex.i: rdregex.c.i
 
 # target to preprocess a source file
 rdregex.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdregex.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdregex.c.i
 .PHONY : rdregex.c.i
 
 rdregex.s: rdregex.c.s
@@ -1972,7 +1972,7 @@ rdregex.s: rdregex.c.s
 
 # target to generate assembly for a file
 rdregex.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdregex.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdregex.c.s
 .PHONY : rdregex.c.s
 
 rdstring.o: rdstring.c.o
@@ -1980,7 +1980,7 @@ rdstring.o: rdstring.c.o
 
 # target to build an object file
 rdstring.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdstring.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdstring.c.o
 .PHONY : rdstring.c.o
 
 rdstring.i: rdstring.c.i
@@ -1988,7 +1988,7 @@ rdstring.i: rdstring.c.i
 
 # target to preprocess a source file
 rdstring.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdstring.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdstring.c.i
 .PHONY : rdstring.c.i
 
 rdstring.s: rdstring.c.s
@@ -1996,7 +1996,7 @@ rdstring.s: rdstring.c.s
 
 # target to generate assembly for a file
 rdstring.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdstring.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdstring.c.s
 .PHONY : rdstring.c.s
 
 rdunittest.o: rdunittest.c.o
@@ -2004,7 +2004,7 @@ rdunittest.o: rdunittest.c.o
 
 # target to build an object file
 rdunittest.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdunittest.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdunittest.c.o
 .PHONY : rdunittest.c.o
 
 rdunittest.i: rdunittest.c.i
@@ -2012,7 +2012,7 @@ rdunittest.i: rdunittest.c.i
 
 # target to preprocess a source file
 rdunittest.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdunittest.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdunittest.c.i
 .PHONY : rdunittest.c.i
 
 rdunittest.s: rdunittest.c.s
@@ -2020,7 +2020,7 @@ rdunittest.s: rdunittest.c.s
 
 # target to generate assembly for a file
 rdunittest.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdunittest.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdunittest.c.s
 .PHONY : rdunittest.c.s
 
 rdvarint.o: rdvarint.c.o
@@ -2028,7 +2028,7 @@ rdvarint.o: rdvarint.c.o
 
 # target to build an object file
 rdvarint.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdvarint.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdvarint.c.o
 .PHONY : rdvarint.c.o
 
 rdvarint.i: rdvarint.c.i
@@ -2036,7 +2036,7 @@ rdvarint.i: rdvarint.c.i
 
 # target to preprocess a source file
 rdvarint.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdvarint.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdvarint.c.i
 .PHONY : rdvarint.c.i
 
 rdvarint.s: rdvarint.c.s
@@ -2044,7 +2044,7 @@ rdvarint.s: rdvarint.c.s
 
 # target to generate assembly for a file
 rdvarint.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdvarint.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdvarint.c.s
 .PHONY : rdvarint.c.s
 
 rdxxhash.o: rdxxhash.c.o
@@ -2052,7 +2052,7 @@ rdxxhash.o: rdxxhash.c.o
 
 # target to build an object file
 rdxxhash.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdxxhash.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdxxhash.c.o
 .PHONY : rdxxhash.c.o
 
 rdxxhash.i: rdxxhash.c.i
@@ -2060,7 +2060,7 @@ rdxxhash.i: rdxxhash.c.i
 
 # target to preprocess a source file
 rdxxhash.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdxxhash.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdxxhash.c.i
 .PHONY : rdxxhash.c.i
 
 rdxxhash.s: rdxxhash.c.s
@@ -2068,7 +2068,7 @@ rdxxhash.s: rdxxhash.c.s
 
 # target to generate assembly for a file
 rdxxhash.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdxxhash.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/rdxxhash.c.s
 .PHONY : rdxxhash.c.s
 
 snappy.o: snappy.c.o
@@ -2076,7 +2076,7 @@ snappy.o: snappy.c.o
 
 # target to build an object file
 snappy.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/snappy.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/snappy.c.o
 .PHONY : snappy.c.o
 
 snappy.i: snappy.c.i
@@ -2084,7 +2084,7 @@ snappy.i: snappy.c.i
 
 # target to preprocess a source file
 snappy.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/snappy.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/snappy.c.i
 .PHONY : snappy.c.i
 
 snappy.s: snappy.c.s
@@ -2092,7 +2092,7 @@ snappy.s: snappy.c.s
 
 # target to generate assembly for a file
 snappy.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/snappy.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/snappy.c.s
 .PHONY : snappy.c.s
 
 tinycthread.o: tinycthread.c.o
@@ -2100,7 +2100,7 @@ tinycthread.o: tinycthread.c.o
 
 # target to build an object file
 tinycthread.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/tinycthread.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/tinycthread.c.o
 .PHONY : tinycthread.c.o
 
 tinycthread.i: tinycthread.c.i
@@ -2108,7 +2108,7 @@ tinycthread.i: tinycthread.c.i
 
 # target to preprocess a source file
 tinycthread.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/tinycthread.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/tinycthread.c.i
 .PHONY : tinycthread.c.i
 
 tinycthread.s: tinycthread.c.s
@@ -2116,7 +2116,7 @@ tinycthread.s: tinycthread.c.s
 
 # target to generate assembly for a file
 tinycthread.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/tinycthread.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/tinycthread.c.s
 .PHONY : tinycthread.c.s
 
 tinycthread_extra.o: tinycthread_extra.c.o
@@ -2124,7 +2124,7 @@ tinycthread_extra.o: tinycthread_extra.c.o
 
 # target to build an object file
 tinycthread_extra.c.o:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/tinycthread_extra.c.o
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/tinycthread_extra.c.o
 .PHONY : tinycthread_extra.c.o
 
 tinycthread_extra.i: tinycthread_extra.c.i
@@ -2132,7 +2132,7 @@ tinycthread_extra.i: tinycthread_extra.c.i
 
 # target to preprocess a source file
 tinycthread_extra.c.i:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/tinycthread_extra.c.i
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/tinycthread_extra.c.i
 .PHONY : tinycthread_extra.c.i
 
 tinycthread_extra.s: tinycthread_extra.c.s
@@ -2140,7 +2140,7 @@ tinycthread_extra.s: tinycthread_extra.c.s
 
 # target to generate assembly for a file
 tinycthread_extra.c.s:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/tinycthread_extra.c.s
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rdkafka.dir/build.make src/CMakeFiles/rdkafka.dir/tinycthread_extra.c.s
 .PHONY : tinycthread_extra.c.s
 
 # Help Target
@@ -2413,6 +2413,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

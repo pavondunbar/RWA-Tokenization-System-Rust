@@ -1,52 +1,14 @@
-   0.089421667s  INFO prepare_target{force=false package_id=rwa v0.1.0 (/Users/pavondunbar/RWA-RUST) target="rwa"}: cargo::core::compiler::fingerprint: fingerprint error for rwa v0.1.0 (/Users/pavondunbar/RWA-RUST)/Check { test: false }/TargetInner { name: "rwa", doc: true, ..: with_path("/Users/pavondunbar/RWA-RUST/src/main.rs", Edition2021) }
-   0.089443500s  INFO prepare_target{force=false package_id=rwa v0.1.0 (/Users/pavondunbar/RWA-RUST) target="rwa"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/pavondunbar/RWA-RUST/target/debug/.fingerprint/rwa-b3a34bca630ecb5c/bin-rwa`
-
-Caused by:
-    No such file or directory (os error 2)
-
-Stack backtrace:
-   0: std::backtrace::Backtrace::create
-   1: cargo_util::paths::read_bytes
-   2: cargo_util::paths::read
-   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
-   4: cargo::core::compiler::fingerprint::prepare_target
-   5: cargo::core::compiler::compile
-   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
-   7: cargo::ops::cargo_compile::compile_ws
-   8: cargo::ops::cargo_compile::compile_with_exec
-   9: cargo::ops::cargo_compile::compile
-  10: cargo::commands::check::exec
-  11: <cargo::cli::Exec>::exec
-  12: cargo::main
-  13: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
-  14: std::rt::lang_start::<()>::{closure#0}
-  15: std::rt::lang_start_internal
-  16: _main
-   0.113382667s  INFO prepare_target{force=false package_id=rwa v0.1.0 (/Users/pavondunbar/RWA-RUST) target="rwa"}: cargo::core::compiler::fingerprint: fingerprint error for rwa v0.1.0 (/Users/pavondunbar/RWA-RUST)/Check { test: true }/TargetInner { name: "rwa", doc: true, ..: with_path("/Users/pavondunbar/RWA-RUST/src/main.rs", Edition2021) }
-   0.113393292s  INFO prepare_target{force=false package_id=rwa v0.1.0 (/Users/pavondunbar/RWA-RUST) target="rwa"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/pavondunbar/RWA-RUST/target/debug/.fingerprint/rwa-c60ee65b2bc45d6d/test-bin-rwa`
-
-Caused by:
-    No such file or directory (os error 2)
-
-Stack backtrace:
-   0: std::backtrace::Backtrace::create
-   1: cargo_util::paths::read_bytes
-   2: cargo_util::paths::read
-   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
-   4: cargo::core::compiler::fingerprint::prepare_target
-   5: cargo::core::compiler::compile
-   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
-   7: cargo::ops::cargo_compile::compile_ws
-   8: cargo::ops::cargo_compile::compile_with_exec
-   9: cargo::ops::cargo_compile::compile
-  10: cargo::commands::check::exec
-  11: <cargo::cli::Exec>::exec
-  12: cargo::main
-  13: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
-  14: std::rt::lang_start::<()>::{closure#0}
-  15: std::rt::lang_start_internal
-  16: _main
-    Checking rwa v0.1.0 (/Users/pavondunbar/RWA-RUST)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.79s
+   0.196737166s  INFO prepare_target{force=false package_id=rwa v0.1.0 (/Users/pavondunbar/RUST-RWA) target="rwa"}: cargo::core::compiler::fingerprint: stale: changed "/Users/pavondunbar/RUST-RWA/src/outbox.rs"
+   0.196748041s  INFO prepare_target{force=false package_id=rwa v0.1.0 (/Users/pavondunbar/RUST-RWA) target="rwa"}: cargo::core::compiler::fingerprint:           (vs) "/Users/pavondunbar/RUST-RWA/target/debug/.fingerprint/rwa-b3a34bca630ecb5c/dep-bin-rwa"
+   0.196749791s  INFO prepare_target{force=false package_id=rwa v0.1.0 (/Users/pavondunbar/RUST-RWA) target="rwa"}: cargo::core::compiler::fingerprint:                FileTime { seconds: 1774049908, nanos: 670045304 } < FileTime { seconds: 1774049931, nanos: 810923279 }
+   0.196906166s  INFO prepare_target{force=false package_id=rwa v0.1.0 (/Users/pavondunbar/RUST-RWA) target="rwa"}: cargo::core::compiler::fingerprint: fingerprint dirty for rwa v0.1.0 (/Users/pavondunbar/RUST-RWA)/Check { test: false }/TargetInner { name: "rwa", doc: true, ..: with_path("/Users/pavondunbar/RUST-RWA/src/main.rs", Edition2021) }
+   0.196914833s  INFO prepare_target{force=false package_id=rwa v0.1.0 (/Users/pavondunbar/RUST-RWA) target="rwa"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "/Users/pavondunbar/RUST-RWA/target/debug/.fingerprint/rwa-b3a34bca630ecb5c/dep-bin-rwa", reference_mtime: FileTime { seconds: 1774049908, nanos: 670045304 }, stale: "/Users/pavondunbar/RUST-RWA/src/outbox.rs", stale_mtime: FileTime { seconds: 1774049931, nanos: 810923279 } }))
+   0.240448291s  INFO prepare_target{force=false package_id=rwa v0.1.0 (/Users/pavondunbar/RUST-RWA) target="rwa"}: cargo::core::compiler::fingerprint: stale: changed "/Users/pavondunbar/RUST-RWA/src/outbox.rs"
+   0.240454333s  INFO prepare_target{force=false package_id=rwa v0.1.0 (/Users/pavondunbar/RUST-RWA) target="rwa"}: cargo::core::compiler::fingerprint:           (vs) "/Users/pavondunbar/RUST-RWA/target/debug/.fingerprint/rwa-c60ee65b2bc45d6d/dep-test-bin-rwa"
+   0.240455833s  INFO prepare_target{force=false package_id=rwa v0.1.0 (/Users/pavondunbar/RUST-RWA) target="rwa"}: cargo::core::compiler::fingerprint:                FileTime { seconds: 1774049908, nanos: 670052096 } < FileTime { seconds: 1774049931, nanos: 810923279 }
+   0.240502208s  INFO prepare_target{force=false package_id=rwa v0.1.0 (/Users/pavondunbar/RUST-RWA) target="rwa"}: cargo::core::compiler::fingerprint: fingerprint dirty for rwa v0.1.0 (/Users/pavondunbar/RUST-RWA)/Check { test: true }/TargetInner { name: "rwa", doc: true, ..: with_path("/Users/pavondunbar/RUST-RWA/src/main.rs", Edition2021) }
+   0.240508291s  INFO prepare_target{force=false package_id=rwa v0.1.0 (/Users/pavondunbar/RUST-RWA) target="rwa"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "/Users/pavondunbar/RUST-RWA/target/debug/.fingerprint/rwa-c60ee65b2bc45d6d/dep-test-bin-rwa", reference_mtime: FileTime { seconds: 1774049908, nanos: 670052096 }, stale: "/Users/pavondunbar/RUST-RWA/src/outbox.rs", stale_mtime: FileTime { seconds: 1774049931, nanos: 810923279 } }))
+    Checking rwa v0.1.0 (/Users/pavondunbar/RUST-RWA)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.60s
 warning: the following packages contain code that will be rejected by a future version of Rust: sqlx-postgres v0.7.4
 note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`

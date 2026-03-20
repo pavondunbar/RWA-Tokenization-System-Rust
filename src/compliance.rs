@@ -250,13 +250,15 @@ impl KycComplianceService {
         .execute(&mut *db_tx)
         .await?;
 
-        // Whitelist the wallet — only whitelisted wallets can send or receive tokens
+        // Whitelist the wallet — only whitelisted wallets can send or receive tokens.
+        // ON CONFLICT handles re-runs where the wallet is already whitelisted.
         sqlx::query(
             r#"
             INSERT INTO whitelisted_wallets (
                 id, investor_id, wallet_address, tier, created_at
             )
             VALUES ($1, $2, $3, $4, NOW())
+            ON CONFLICT (wallet_address) DO NOTHING
             "#,
         )
         .bind(Uuid::new_v4())

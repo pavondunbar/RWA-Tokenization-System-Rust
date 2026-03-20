@@ -1,4 +1,4 @@
-prefix=/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out
+prefix=/Users/pavondunbar/RUST-RWA/target/debug/build/rdkafka-sys-7e32113b45b24455/out
 exec_prefix=${prefix}
 includedir=${prefix}/include
 libdir=${prefix}/lib
