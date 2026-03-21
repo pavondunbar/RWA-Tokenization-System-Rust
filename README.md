@@ -1,6 +1,6 @@
 # RWA Tokenization Platform
 
-> ⚠️ **DEMO ONLY — NOT FOR PRODUCTION USE**
+> **DEMO ONLY — NOT FOR PRODUCTION USE**
 > This codebase is a simplified demonstration of real-world asset tokenization architecture concepts.
 > It is not audited, not hardened, and is not suitable for handling real funds, securities, or investor data under any circumstances.
 > See [Production Considerations](#production-considerations) for a full list of what would need to change.
@@ -47,10 +47,16 @@ Yield accrues by minting new tokens proportionally to each holder daily — the 
 ## Key Patterns Demonstrated
 
 ### Pessimistic Locking (`FOR UPDATE`)
-Every operation that touches shared state acquires a row-level lock before reading. Token minting locks `rwa_token_supply` to prevent two simultaneous $250M mints from both passing a $300M supply check. Legal wrapper creation locks `rwa_assets` to enforce one wrapper per asset. All locks are held for the minimum possible duration.
+Every operation that touches shared state acquires a row-level lock before reading. Token minting locks `legal_wrappers` to prevent two simultaneous $250M mints from both passing a $300M supply check. Legal wrapper creation locks `rwa_assets` to enforce one wrapper per asset. All locks are held for the minimum possible duration.
+
+### Derived State (No Mutable Counters)
+Token supply and investor balances are **derived** from append-only ledger tables, not stored in mutable counters. Allocated supply = `SUM(token_mints) - SUM(settled token_redemptions)`. This eliminates counter-consistency bugs and enables point-in-time audit queries. The total token supply is read from the immutable `legal_wrappers` row.
 
 ### Transactional Outbox
 Every state-changing operation writes an outbox event in the **same database transaction** as the state change itself. If Kafka is down, the event waits safely in Postgres. A separate outbox poller delivers it once the broker recovers. There is no dual-write inconsistency and no lost events.
+
+### Append-Only Ledger Protections
+PostgreSQL triggers enforce immutability at the database layer. `legal_wrappers` and `nav_calculations` reject all UPDATE and DELETE operations unconditionally. `token_mints` and `token_redemptions` are conditionally immutable — updates are blocked once a mint is confirmed or a redemption is settled. Even application-layer bugs cannot corrupt finalized ledger records.
 
 ### Idempotency Keys
 Every write operation accepts a caller-supplied `idempotency_key` and checks it before any writes. Safe to retry on network failures, process crashes, or timeout ambiguity — the second call returns the first call's result.
@@ -80,6 +86,8 @@ Every failure mode is a distinct enum variant in `RwaError`, carrying the struct
 ```
 rwa/
 ├── Cargo.toml
+├── schema.sql              # DDL + append-only ledger triggers
+├── seed_test.sql           # Sample data (3 institutional investors)
 └── src/
     ├── main.rs             # Entrypoint + all stub adapter implementations + demo scenario
     ├── errors.rs           # Typed error enum — one variant per failure mode
@@ -101,17 +109,17 @@ rwa/
 
 **`registry.rs`** — Registers a real-world asset with its type, total value, jurisdiction, and custodian. Validates the custodian is approved. Writes a `rwa.registered` outbox event to trigger the downstream legal review workflow.
 
-**`legal.rs`** — Creates the legal entity (SPV, Trust, LLC, or regulated Fund) that legally owns the asset. Computes `price_per_token = total_value / token_supply`. Initialises the `rwa_token_supply` tracker with `minted_supply = 0`. Advances the asset state machine from `PENDING_LEGAL` → `PENDING_AUDIT`.
+**`legal.rs`** — Creates the legal entity (SPV, Trust, LLC, or regulated Fund) that legally owns the asset. Computes `price_per_token = total_value / token_supply`. Records the token supply and price in `legal_wrappers` (immutable after creation). Advances the asset state machine from `PENDING_LEGAL` → `PENDING_AUDIT`.
 
 **`compliance.rs`** — Full KYC/AML onboarding flow: sanctions screening → identity verification → atomic compliance record + wallet whitelist write. Also exposes `can_transfer(from, to)` — called before every token transfer to check both wallets. Supports whitelist revocation for expired KYC or sanctions hits.
 
-**`minting.rs`** — Mints tokens to a whitelisted investor wallet on receipt of fiat. Locks `rwa_token_supply` with `FOR UPDATE` to prevent overselling. Creates the mint record, writes the outbox event, and publishes to the signing queue — all in the right order with the right transaction boundaries. Handles on-chain confirmation via `confirm_mint()`.
+**`minting.rs`** — Mints tokens to a whitelisted investor wallet on receipt of fiat. Locks `legal_wrappers` with `FOR UPDATE` and derives allocated supply from `token_mints` and `token_redemptions` to prevent overselling. Creates the mint record, writes the outbox event, and publishes to the signing queue — all in the right order with the right transaction boundaries. Handles on-chain confirmation via `confirm_mint()`.
 
-**`redemption.rs`** — Inverse of minting. Verifies whitelist, locks the investor's confirmed token balance, creates the redemption record, and enqueues the on-chain burn. `settle_redemption()` is called after the burn is confirmed — it releases the supply counter and triggers the fiat wire via outbox.
+**`redemption.rs`** — Inverse of minting. Verifies whitelist, locks the investor's confirmed token balance, creates the redemption record, and enqueues the on-chain burn. `settle_redemption()` is called after the burn is confirmed — it advances the redemption to `SETTLED`, which implicitly releases supply via the derived calculation, and triggers the fiat wire via outbox.
 
 **`nav.rs`** — Calculates `daily_yield = total_value × (annual_rate / 365)` and accrues it to the fund's total value. Writes a `nav.yield_calculated` outbox event that triggers the on-chain rebase minter. Idempotency key format `asset_id:YYYY-MM-DD` ensures exactly one NAV calculation per asset per day.
 
-**`reconciliation.rs`** — Compares `minted_supply` in the DB against `totalSupply()` on-chain, and `total_value` in the DB against the custodian's NAV report. Any mismatch fires a `CRITICAL` alert and halts new mints and redemptions. NAV comparison uses a $0.01 tolerance.
+**`reconciliation.rs`** — Derives allocated supply from ledger tables (`SUM(token_mints) - SUM(settled token_redemptions)`) and compares it against `totalSupply()` on-chain. Also compares `total_value` in the DB against the custodian's NAV report. Any mismatch fires a `CRITICAL` alert and halts new mints and redemptions. NAV comparison uses a $0.01 tolerance.
 
 **`outbox.rs`** — Polls `outbox_events WHERE published_at IS NULL`, sends each event to the appropriate Kafka topic (`rwa.{event_type}`), and marks each event published individually inside the loop. `FOR UPDATE SKIP LOCKED` enables multiple concurrent publisher instances.
 
@@ -124,8 +132,6 @@ rwa/
 Open the **PostgreSQL panel** in CoderPad and run the full DDL from `schema.sql`:
 
 ```sql
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
-
 CREATE TABLE rwa_assets (
   id UUID PRIMARY KEY,
   type VARCHAR(20) NOT NULL,
@@ -135,8 +141,8 @@ CREATE TABLE rwa_assets (
   custodian VARCHAR(256) NOT NULL,
   status VARCHAR(20) NOT NULL,
   idempotency_key VARCHAR(256) UNIQUE,
-  created_at TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP NOT NULL
+  created_at TIMESTAMPTZ NOT NULL,
+  updated_at TIMESTAMPTZ NOT NULL
 );
 
 CREATE TABLE legal_wrappers (
@@ -147,7 +153,7 @@ CREATE TABLE legal_wrappers (
   token_supply DECIMAL(38,18) NOT NULL,
   price_per_token DECIMAL(38,18) NOT NULL,
   status VARCHAR(20) NOT NULL,
-  created_at TIMESTAMP NOT NULL
+  created_at TIMESTAMPTZ NOT NULL
 );
 
 CREATE TABLE investor_compliance (
@@ -159,8 +165,8 @@ CREATE TABLE investor_compliance (
   status VARCHAR(20) NOT NULL,
   kyc_reference VARCHAR(256),
   idempotency_key VARCHAR(256) UNIQUE,
-  created_at TIMESTAMP NOT NULL,
-  expires_at TIMESTAMP NOT NULL
+  created_at TIMESTAMPTZ NOT NULL,
+  expires_at TIMESTAMPTZ NOT NULL
 );
 
 CREATE TABLE whitelisted_wallets (
@@ -168,7 +174,7 @@ CREATE TABLE whitelisted_wallets (
   investor_id UUID NOT NULL,
   wallet_address VARCHAR(256) UNIQUE NOT NULL,
   tier VARCHAR(20) NOT NULL,
-  created_at TIMESTAMP NOT NULL
+  created_at TIMESTAMPTZ NOT NULL
 );
 
 CREATE TABLE token_mints (
@@ -182,8 +188,8 @@ CREATE TABLE token_mints (
   idempotency_key VARCHAR(256) UNIQUE,
   tx_hash VARCHAR(256),
   block_number BIGINT,
-  created_at TIMESTAMP NOT NULL,
-  confirmed_at TIMESTAMP
+  created_at TIMESTAMPTZ NOT NULL,
+  confirmed_at TIMESTAMPTZ
 );
 
 CREATE TABLE token_redemptions (
@@ -195,17 +201,8 @@ CREATE TABLE token_redemptions (
   bank_account VARCHAR(256) NOT NULL,
   status VARCHAR(20) NOT NULL,
   idempotency_key VARCHAR(256) UNIQUE,
-  created_at TIMESTAMP NOT NULL,
-  settled_at TIMESTAMP
-);
-
-CREATE TABLE rwa_token_supply (
-  id UUID PRIMARY KEY,
-  asset_id UUID REFERENCES rwa_assets(id),
-  total_supply DECIMAL(38,18) NOT NULL,
-  minted_supply DECIMAL(38,18) NOT NULL DEFAULT 0,
-  created_at TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP NOT NULL
+  created_at TIMESTAMPTZ NOT NULL,
+  settled_at TIMESTAMPTZ
 );
 
 CREATE TABLE nav_calculations (
@@ -214,7 +211,7 @@ CREATE TABLE nav_calculations (
   total_value DECIMAL(38,18) NOT NULL,
   daily_yield DECIMAL(38,18) NOT NULL,
   yield_rate DECIMAL(38,18) NOT NULL,
-  calculated_at TIMESTAMP NOT NULL,
+  calculated_at TIMESTAMPTZ NOT NULL,
   idempotency_key VARCHAR(256) UNIQUE
 );
 
@@ -223,8 +220,8 @@ CREATE TABLE outbox_events (
   aggregate_id VARCHAR(256) NOT NULL,
   event_type VARCHAR(64) NOT NULL,
   payload JSONB NOT NULL,
-  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-  published_at TIMESTAMP
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  published_at TIMESTAMPTZ
 );
 
 CREATE INDEX idx_outbox_unpublished
@@ -236,6 +233,64 @@ ON token_mints(investor_id, asset_id, status);
 
 CREATE INDEX idx_whitelisted_wallets_address
 ON whitelisted_wallets(wallet_address);
+
+-- Append-only ledger triggers
+
+CREATE OR REPLACE FUNCTION reject_ledger_mutation()
+RETURNS TRIGGER AS $$
+BEGIN
+  RAISE EXCEPTION 'ledger table % is append-only: % denied',
+    TG_TABLE_NAME, TG_OP;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER legal_wrappers_immutable
+  BEFORE UPDATE OR DELETE ON legal_wrappers
+  FOR EACH ROW EXECUTE FUNCTION reject_ledger_mutation();
+
+CREATE TRIGGER nav_calculations_immutable
+  BEFORE UPDATE OR DELETE ON nav_calculations
+  FOR EACH ROW EXECUTE FUNCTION reject_ledger_mutation();
+
+CREATE OR REPLACE FUNCTION reject_settled_mint_mutation()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF TG_OP = 'DELETE' THEN
+    RAISE EXCEPTION
+      'token_mints: DELETE denied (append-only ledger)';
+  END IF;
+  IF OLD.status = 'confirmed' THEN
+    RAISE EXCEPTION
+      'token_mints: UPDATE denied (mint % is confirmed)',
+      OLD.id;
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER token_mints_immutable_after_confirm
+  BEFORE UPDATE OR DELETE ON token_mints
+  FOR EACH ROW EXECUTE FUNCTION reject_settled_mint_mutation();
+
+CREATE OR REPLACE FUNCTION reject_settled_redemption_mutation()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF TG_OP = 'DELETE' THEN
+    RAISE EXCEPTION
+      'token_redemptions: DELETE denied (append-only ledger)';
+  END IF;
+  IF OLD.status = 'settled' THEN
+    RAISE EXCEPTION
+      'token_redemptions: UPDATE denied (redemption % is settled)',
+      OLD.id;
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER token_redemptions_immutable_after_settle
+  BEFORE UPDATE OR DELETE ON token_redemptions
+  FOR EACH ROW EXECUTE FUNCTION reject_settled_redemption_mutation();
 ```
 
 ### 2. Seed test data (optional)
@@ -252,13 +307,11 @@ step 2 → Delaware Trust legal wrapper created
 step 3 → institutional investor onboarded and wallet whitelisted
 step 4 → 50,000,000 tokens minted ($50M fiat received)
 step 5 → mint confirmed on-chain (tx_hash + block_number recorded)
-step 6 → daily yield distributed (5% APY → ~$6,849 daily)
+step 6 → daily yield distributed (5% APY → ~$68,493 daily on $500M)
 step 7 → reconciliation passed (DB = on-chain = custodian)
 step 8 → 10,000,000 token redemption requested
 step 9 → outbox flushed to Kafka (all events delivered)
 ```
-
-To change the scenario, edit the `WithdrawalRequest` block near the bottom of `main.rs`.
 
 ---
 
@@ -268,16 +321,37 @@ To change the scenario, edit the `WithdrawalRequest` block near the bottom of `m
 # Start a local Postgres instance
 docker run --rm \
   -e POSTGRES_PASSWORD=password \
-  -e POSTGRES_DB=rwa \
+  -e POSTGRES_DB=rustrwa \
   -p 5432:5432 \
   postgres:16
 
 # Apply the schema
-psql postgres://postgres:password@localhost/rwa -f schema.sql
+psql postgres://postgres:password@localhost/rustrwa -f schema.sql
+
+# Start a local Kafka instance (required for outbox publishing)
+docker run --rm \
+  -e KAFKA_NODE_ID=1 \
+  -e KAFKA_PROCESS_ROLES=broker,controller \
+  -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093 \
+  -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 \
+  -e KAFKA_CONTROLLER_QUORUM_VOTERS=1@localhost:9093 \
+  -e KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER \
+  -e CLUSTER_ID=MkU3OEVBNTcwNTJENDM2Qk \
+  -p 9092:9092 \
+  apache/kafka:3.7.0
 
 # Run the service
-DATABASE_URL=postgres://postgres:password@localhost/rwa cargo run
+DATABASE_URL=postgres://postgres:password@localhost/rustrwa \
+KAFKA_BROKERS=localhost:9092 \
+cargo run
 ```
+
+**Environment variables:**
+
+| Variable | Default | Description |
+|---|---|---|
+| `DATABASE_URL` | `postgres://postgres@localhost/rustrwa` | PostgreSQL connection string |
+| `KAFKA_BROKERS` | `localhost:9092` | Kafka bootstrap servers |
 
 ---
 
@@ -321,7 +395,7 @@ DATABASE_URL=postgres://postgres:password@localhost/rwa cargo run
                     │              TOKEN REDEMPTION                        │
                     │                                                       │
                     │  Request  →  Lock Balance  →  Burn On-chain         │
-                    │           →  Release Supply  →  Wire Fiat           │
+                    │           →  Settle (derived supply released) →  Wire Fiat │
                     └─────────────────────────────────────────────────────┘
 ```
 
@@ -357,7 +431,8 @@ Every state change produces a durable outbox event consumed by downstream servic
 | `chrono` | Timestamp types and KYC expiry date arithmetic |
 | `thiserror` | Typed error derivation |
 | `async-trait` | Async methods in trait definitions |
-| `tracing` | Structured, levelled logging with `#[instrument]` |
+| `tracing` / `tracing-subscriber` | Structured, levelled logging with `#[instrument]` |
+| `rdkafka` | Kafka producer (librdkafka binding) for outbox event delivery |
 
 ---
 
@@ -399,10 +474,10 @@ This demo omits a significant number of concerns that a real RWA platform would 
 
 ---
 
-## 📄 License
+## License
 
 This project is provided as-is for educational and reference purposes. Please review the repository's license file before use.
 
 ---
 
-*Built with ♥️ by [Pavon Dunbar](https://linktr.ee/pavondunbar)*
+*Built by [Pavon Dunbar](https://linktr.ee/pavondunbar)*
