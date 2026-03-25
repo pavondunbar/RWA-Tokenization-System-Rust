@@ -8,7 +8,10 @@ use uuid::Uuid;
 use crate::{
     compliance::KycComplianceService,
     errors::RwaError,
-    models::{BurnSigningMessage, MintStatus, RedemptionRequest, RedemptionStatus, TokenRedemption},
+    models::{
+        BurnSigningMessage, LedgerAccount, RedemptionRequest,
+        RedemptionStatus, TokenRedemption,
+    },
     ports::MintSigningQueue,
 };
 
@@ -27,14 +30,8 @@ impl TokenRedemptionService {
         Self { db, compliance, signing_queue }
     }
 
-    /// Initiates token redemption. Investor returns tokens; they are burned
-    /// on-chain and fiat is wired back.
-    ///
-    /// This is the most operationally complex flow — it spans blockchain (burn),
-    /// compliance (whitelist check), and TradFi (wire transfer). Each step
-    /// must succeed, or the prior steps must roll back.
-    ///
-    /// State machine: PENDING → APPROVED → BURNING → BURNED → SETTLED
+    /// Initiates token redemption.
+    /// State machine: PENDING -> APPROVED -> BURNING -> BURNED -> SETTLED
     #[instrument(skip(self), fields(
         asset_id       = %req.asset_id,
         investor_id    = %req.investor_id,
@@ -46,18 +43,18 @@ impl TokenRedemptionService {
         req: RedemptionRequest,
     ) -> Result<Uuid, RwaError> {
 
-        // ---- STEP 1: Idempotency check ----------------------------------------
-        if let Some(existing) = self.find_by_idempotency_key(&req.idempotency_key).await? {
+        if let Some(existing) = self
+            .find_by_idempotency_key(&req.idempotency_key)
+            .await?
+        {
             info!(
                 idempotency_key = %req.idempotency_key,
                 redemption_id   = %existing.id,
-                "duplicate redemption request — returning existing record"
+                "duplicate redemption — returning existing record"
             );
             return Ok(existing.id);
         }
 
-        // ---- STEP 2: Whitelist check — investor must still be KYC-approved ----
-        // OUTSIDE the DB transaction — read-only compliance check
         let can_send = self.compliance
             .can_transfer(&req.wallet_address, "ISSUER_WALLET")
             .await?;
@@ -68,12 +65,10 @@ impl TokenRedemptionService {
             });
         }
 
-        // ---- STEP 3: Lock balance + create redemption record + outbox ---------
-        let redemption_id = self.lock_balance_and_create_redemption(&req).await?;
+        let redemption_id = self
+            .lock_balance_and_create_redemption(&req)
+            .await?;
 
-        // ---- STEP 4: Enqueue burn OUTSIDE the DB transaction -----------------
-        // asset_id as group ID → per-asset FIFO ordering.
-        // redemption_id as dedup ID → idempotent enqueue on retries.
         self.signing_queue
             .send_burn(
                 BurnSigningMessage {
@@ -83,20 +78,20 @@ impl TokenRedemptionService {
                     token_amount:  req.token_amount.to_string(),
                     action:        "burn".into(),
                 },
-                req.asset_id.to_string(),      // MessageGroupId
-                redemption_id.to_string(),     // MessageDeduplicationId
+                req.asset_id.to_string(),
+                redemption_id.to_string(),
             )
             .await?;
 
-        info!(%redemption_id, "redemption enqueued for on-chain burn");
+        info!(
+            %redemption_id,
+            "redemption enqueued for on-chain burn"
+        );
         Ok(redemption_id)
     }
 
     /// Called after the burn is confirmed on-chain.
-    /// Triggers the fiat wire. Supply release is implicit — once the
-    /// redemption status becomes 'settled', the derived allocated supply
-    /// decreases automatically.
-    /// State machine: BURNED → SETTLED.
+    /// State machine: BURNED -> SETTLED.
     #[instrument(skip(self), fields(%redemption_id))]
     pub async fn settle_redemption(
         &self,
@@ -104,15 +99,13 @@ impl TokenRedemptionService {
     ) -> Result<(), RwaError> {
         let mut db_tx = self.db.begin().await?;
 
-        // Lock the redemption record — one settlement at a time
+        // Read redemption details (immutable row)
         let row = sqlx::query(
             r#"
             SELECT id, asset_id, investor_id, wallet_address,
-                   token_amount, bank_account, status,
-                   idempotency_key, created_at, settled_at
+                   token_amount, bank_account
             FROM token_redemptions
             WHERE id = $1
-            FOR UPDATE
             "#,
         )
         .bind(redemption_id)
@@ -120,12 +113,32 @@ impl TokenRedemptionService {
         .await?
         .ok_or(RwaError::RedemptionNotFound { redemption_id })?;
 
-        let status: String        = row.get("status");
+        let asset_id: Uuid = row.get("asset_id");
+        let investor_id: Uuid = row.get("investor_id");
         let token_amount: Decimal = row.get("token_amount");
-        let investor_id: Uuid   = row.get("investor_id");
         let bank_account: String = row.get("bank_account");
 
-        // State machine guard — must be BURNED before settling
+        // Read latest status from event log
+        let status_row = sqlx::query(
+            r#"
+            SELECT status
+            FROM token_redemption_events
+            WHERE redemption_id = $1
+            ORDER BY created_at DESC
+            LIMIT 1
+            "#,
+        )
+        .bind(redemption_id)
+        .fetch_optional(&mut *db_tx)
+        .await?;
+
+        let status = status_row
+            .map(|r| r.get::<String, _>("status"))
+            .unwrap_or_else(|| {
+                // No events yet means initial "pending" status
+                RedemptionStatus::Pending.as_str().to_string()
+            });
+
         if status != RedemptionStatus::Burned.as_str() {
             return Err(RwaError::InvalidState {
                 expected: RedemptionStatus::Burned.as_str().into(),
@@ -133,23 +146,99 @@ impl TokenRedemptionService {
             });
         }
 
-        // Mark redemption as settled
-        // Supply is derived — settling a redemption (status → 'settled')
-        // automatically reduces the derived allocated supply.
+        // Append settlement event instead of UPDATE
         sqlx::query(
             r#"
-            UPDATE token_redemptions
-            SET status     = $1,
-                settled_at = NOW()
-            WHERE id = $2
+            INSERT INTO token_redemption_events (
+                id, redemption_id, status
+            )
+            VALUES ($1, $2, $3)
             "#,
         )
-        .bind(RedemptionStatus::Settled.as_str())
+        .bind(Uuid::new_v4())
         .bind(redemption_id)
+        .bind(RedemptionStatus::Settled.as_str())
         .execute(&mut *db_tx)
         .await?;
 
-        // Outbox — triggers the fiat wire transfer to investor bank account
+        // Double-entry ledger: redemption settlement
+        // DEBIT fund:treasury (fund receives tokens back)
+        sqlx::query(
+            r#"
+            INSERT INTO ledger_entries (
+                id, event_type, reference_id, account,
+                asset_id, debit, credit, currency, memo
+            )
+            VALUES ($1, 'token.redeem', $2, $3, $4, $5, 0, 'TOKEN',
+                    'tokens returned to fund treasury')
+            "#,
+        )
+        .bind(Uuid::new_v4())
+        .bind(redemption_id)
+        .bind(LedgerAccount::fund_treasury(asset_id))
+        .bind(asset_id)
+        .bind(token_amount)
+        .execute(&mut *db_tx)
+        .await?;
+
+        // CREDIT investor:tokens (investor returns tokens)
+        sqlx::query(
+            r#"
+            INSERT INTO ledger_entries (
+                id, event_type, reference_id, account,
+                asset_id, debit, credit, currency, memo
+            )
+            VALUES ($1, 'token.redeem', $2, $3, $4, 0, $5, 'TOKEN',
+                    'tokens redeemed by investor')
+            "#,
+        )
+        .bind(Uuid::new_v4())
+        .bind(redemption_id)
+        .bind(LedgerAccount::investor_tokens(investor_id))
+        .bind(asset_id)
+        .bind(token_amount)
+        .execute(&mut *db_tx)
+        .await?;
+
+        // DEBIT investor:fiat (investor receives fiat)
+        sqlx::query(
+            r#"
+            INSERT INTO ledger_entries (
+                id, event_type, reference_id, account,
+                asset_id, debit, credit, currency, memo
+            )
+            VALUES ($1, 'token.redeem', $2, $3, $4, $5, 0, 'USD',
+                    'fiat paid to investor')
+            "#,
+        )
+        .bind(Uuid::new_v4())
+        .bind(redemption_id)
+        .bind(LedgerAccount::investor_fiat(investor_id))
+        .bind(asset_id)
+        .bind(token_amount) // 1:1 token-to-fiat at $1.00
+        .execute(&mut *db_tx)
+        .await?;
+
+        // CREDIT fund:fiat (fund pays fiat)
+        sqlx::query(
+            r#"
+            INSERT INTO ledger_entries (
+                id, event_type, reference_id, account,
+                asset_id, debit, credit, currency, memo
+            )
+            VALUES ($1, 'token.redeem', $2, $3, $4, 0, $5, 'USD',
+                    'fiat disbursed from fund')
+            "#,
+        )
+        .bind(Uuid::new_v4())
+        .bind(redemption_id)
+        .bind(LedgerAccount::fund_fiat(asset_id))
+        .bind(asset_id)
+        .bind(token_amount)
+        .execute(&mut *db_tx)
+        .await?;
+
+        // Outbox — triggers the fiat wire transfer
         let payload = json!({
             "redemption_id": redemption_id.to_string(),
             "investor_id":   investor_id.to_string(),
@@ -159,7 +248,8 @@ impl TokenRedemptionService {
 
         sqlx::query(
             r#"
-            INSERT INTO outbox_events (id, aggregate_id, event_type, payload, created_at)
+            INSERT INTO outbox_events
+                (id, aggregate_id, event_type, payload, created_at)
             VALUES ($1, $2, 'token.redemption_settled', $3, NOW())
             "#,
         )
@@ -185,44 +275,49 @@ impl TokenRedemptionService {
     // Private helpers
     // -----------------------------------------------------------------------
 
-    /// Acquires a pessimistic lock on the investor's confirmed token_mint balance,
-    /// checks it covers the redemption amount, creates the redemption record,
-    /// and writes the outbox event — all atomically.
     async fn lock_balance_and_create_redemption(
         &self,
         req: &RedemptionRequest,
     ) -> Result<Uuid, RwaError> {
         let mut db_tx = self.db.begin().await?;
 
-        // Lock investor's confirmed mint rows, then sum
+        // Lock investor's confirmed mint rows then sum.
+        // Confirmed status is now derived from token_mint_events.
         sqlx::query(
             r#"
-            SELECT id
-            FROM token_mints
-            WHERE investor_id = $1
-              AND asset_id    = $2
-              AND status      = $3
+            SELECT tm.id
+            FROM token_mints tm
+            WHERE tm.investor_id = $1
+              AND tm.asset_id    = $2
+              AND EXISTS (
+                SELECT 1 FROM token_mint_events tme
+                WHERE tme.mint_id = tm.id
+                  AND tme.status = 'confirmed'
+              )
             FOR UPDATE
             "#,
         )
         .bind(req.investor_id)
         .bind(req.asset_id)
-        .bind(MintStatus::Confirmed.as_str())
         .fetch_all(&mut *db_tx)
         .await?;
 
         let balance_row = sqlx::query(
             r#"
-            SELECT COALESCE(SUM(token_amount), 0) AS total_balance
-            FROM token_mints
-            WHERE investor_id = $1
-              AND asset_id    = $2
-              AND status      = $3
+            SELECT COALESCE(SUM(tm.token_amount), 0)
+                AS total_balance
+            FROM token_mints tm
+            WHERE tm.investor_id = $1
+              AND tm.asset_id    = $2
+              AND EXISTS (
+                SELECT 1 FROM token_mint_events tme
+                WHERE tme.mint_id = tm.id
+                  AND tme.status = 'confirmed'
+              )
             "#,
         )
         .bind(req.investor_id)
         .bind(req.asset_id)
-        .bind(MintStatus::Confirmed.as_str())
         .fetch_one(&mut *db_tx)
         .await?;
 
@@ -258,7 +353,6 @@ impl TokenRedemptionService {
         .execute(&mut *db_tx)
         .await?;
 
-        // Outbox — triggers burn workflow
         let payload = json!({
             "redemption_id": redemption_id.to_string(),
             "asset_id":      req.asset_id.to_string(),
@@ -268,7 +362,8 @@ impl TokenRedemptionService {
 
         sqlx::query(
             r#"
-            INSERT INTO outbox_events (id, aggregate_id, event_type, payload, created_at)
+            INSERT INTO outbox_events
+                (id, aggregate_id, event_type, payload, created_at)
             VALUES ($1, $2, 'token.redemption_requested', $3, NOW())
             "#,
         )

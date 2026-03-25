@@ -8,7 +8,10 @@ use uuid::Uuid;
 use crate::{
     compliance::KycComplianceService,
     errors::RwaError,
-    models::{MintSigningMessage, MintStatus, MintTokensRequest, TokenMint},
+    models::{
+        LedgerAccount, MintSigningMessage, MintStatus,
+        MintTokensRequest, TokenMint,
+    },
     ports::MintSigningQueue,
 };
 
@@ -28,13 +31,6 @@ impl TokenMintingService {
     }
 
     /// Mints RWA tokens to a whitelisted investor wallet.
-    /// Triggered when investor wires fiat to the fund.
-    ///
-    /// BlackRock BUIDL example:
-    ///   - Investor wires $10M USD to fund
-    ///   - Fund receives fiat, buys T-bills with proceeds
-    ///   - Mints 10,000,000 BUIDL tokens ($1.00 NAV each)
-    ///   - Yield accrues by rebasing token balance daily
     #[instrument(skip(self), fields(
         asset_id       = %req.asset_id,
         investor_id    = %req.investor_id,
@@ -46,8 +42,10 @@ impl TokenMintingService {
         req: MintTokensRequest,
     ) -> Result<TokenMint, RwaError> {
 
-        // ---- STEP 1: Idempotency check ----------------------------------------
-        if let Some(existing) = self.find_by_idempotency_key(&req.idempotency_key).await? {
+        if let Some(existing) = self
+            .find_by_idempotency_key(&req.idempotency_key)
+            .await?
+        {
             info!(
                 idempotency_key = %req.idempotency_key,
                 mint_id         = %existing.id,
@@ -56,8 +54,6 @@ impl TokenMintingService {
             return Ok(existing);
         }
 
-        // ---- STEP 2: Wallet whitelist check -----------------------------------
-        // OUTSIDE the DB transaction — read-only compliance check
         let can_receive = self.compliance
             .can_transfer("ISSUER_WALLET", &req.wallet_address)
             .await?;
@@ -68,13 +64,10 @@ impl TokenMintingService {
             });
         }
 
-        // ---- STEP 3: Lock supply + create mint record + outbox ---------------
-        let mint_id = self.lock_supply_and_create_mint(&req).await?;
+        let mint_id = self
+            .lock_supply_and_create_mint(&req)
+            .await?;
 
-        // ---- STEP 4: Enqueue for signing OUTSIDE the DB transaction ----------
-        // Never hold a row lock during external queue calls.
-        // asset_id as group ID → per-asset FIFO ordering in SQS FIFO queue.
-        // mint_id as dedup ID  → idempotent enqueue on transient errors.
         let mint = self.find_mint_by_id(mint_id).await?;
 
         self.signing_queue
@@ -86,8 +79,8 @@ impl TokenMintingService {
                     token_amount: req.token_amount.to_string(),
                     action:       "mint".into(),
                 },
-                req.asset_id.to_string(),  // MessageGroupId
-                mint_id.to_string(),       // MessageDeduplicationId
+                req.asset_id.to_string(),
+                mint_id.to_string(),
             )
             .await?;
 
@@ -95,8 +88,8 @@ impl TokenMintingService {
         Ok(mint)
     }
 
-    /// Called by ConfirmationTracker when the mint transaction is confirmed on-chain.
-    /// Settles the ledger — marks confirmed and records the on-chain proof.
+    /// Called by ConfirmationTracker when the mint transaction
+    /// is confirmed on-chain.
     #[instrument(skip(self), fields(%mint_id, %tx_hash, %block_number))]
     pub async fn confirm_mint(
         &self,
@@ -106,24 +99,119 @@ impl TokenMintingService {
     ) -> Result<(), RwaError> {
         let mut db_tx = self.db.begin().await?;
 
-        sqlx::query(
+        // Read mint details for ledger entries
+        let row = sqlx::query(
             r#"
-            UPDATE token_mints
-            SET status       = $1,
-                tx_hash      = $2,
-                block_number = $3,
-                confirmed_at = NOW()
-            WHERE id = $4
+            SELECT asset_id, investor_id, token_amount, fiat_received
+            FROM token_mints
+            WHERE id = $1
             "#,
         )
+        .bind(mint_id)
+        .fetch_optional(&mut *db_tx)
+        .await?
+        .ok_or(RwaError::MintNotFound { mint_id })?;
+
+        let asset_id: Uuid = row.get("asset_id");
+        let investor_id: Uuid = row.get("investor_id");
+        let token_amount: Decimal = row.get("token_amount");
+        let fiat_received: Decimal = row.get("fiat_received");
+
+        // Append confirmation event instead of UPDATE
+        sqlx::query(
+            r#"
+            INSERT INTO token_mint_events (
+                id, mint_id, status, tx_hash, block_number
+            )
+            VALUES ($1, $2, $3, $4, $5)
+            "#,
+        )
+        .bind(Uuid::new_v4())
+        .bind(mint_id)
         .bind(MintStatus::Confirmed.as_str())
         .bind(tx_hash)
         .bind(block_number)
-        .bind(mint_id)
         .execute(&mut *db_tx)
         .await?;
 
-        // Outbox — notifies investor dashboard and downstream systems
+        // Double-entry ledger: token mint
+        // DEBIT investor:tokens (investor receives tokens)
+        sqlx::query(
+            r#"
+            INSERT INTO ledger_entries (
+                id, event_type, reference_id, account,
+                asset_id, debit, credit, currency, memo
+            )
+            VALUES ($1, 'token.mint', $2, $3, $4, $5, 0, 'TOKEN',
+                    'tokens minted to investor')
+            "#,
+        )
+        .bind(Uuid::new_v4())
+        .bind(mint_id)
+        .bind(LedgerAccount::investor_tokens(investor_id))
+        .bind(asset_id)
+        .bind(token_amount)
+        .execute(&mut *db_tx)
+        .await?;
+
+        // CREDIT fund:treasury (fund issues tokens)
+        sqlx::query(
+            r#"
+            INSERT INTO ledger_entries (
+                id, event_type, reference_id, account,
+                asset_id, debit, credit, currency, memo
+            )
+            VALUES ($1, 'token.mint', $2, $3, $4, 0, $5, 'TOKEN',
+                    'tokens issued from fund treasury')
+            "#,
+        )
+        .bind(Uuid::new_v4())
+        .bind(mint_id)
+        .bind(LedgerAccount::fund_treasury(asset_id))
+        .bind(asset_id)
+        .bind(token_amount)
+        .execute(&mut *db_tx)
+        .await?;
+
+        // DEBIT fund:fiat (fund receives fiat)
+        sqlx::query(
+            r#"
+            INSERT INTO ledger_entries (
+                id, event_type, reference_id, account,
+                asset_id, debit, credit, currency, memo
+            )
+            VALUES ($1, 'token.mint', $2, $3, $4, $5, 0, 'USD',
+                    'fiat received from investor')
+            "#,
+        )
+        .bind(Uuid::new_v4())
+        .bind(mint_id)
+        .bind(LedgerAccount::fund_fiat(asset_id))
+        .bind(asset_id)
+        .bind(fiat_received)
+        .execute(&mut *db_tx)
+        .await?;
+
+        // CREDIT investor:fiat (investor pays fiat)
+        sqlx::query(
+            r#"
+            INSERT INTO ledger_entries (
+                id, event_type, reference_id, account,
+                asset_id, debit, credit, currency, memo
+            )
+            VALUES ($1, 'token.mint', $2, $3, $4, 0, $5, 'USD',
+                    'fiat paid by investor')
+            "#,
+        )
+        .bind(Uuid::new_v4())
+        .bind(mint_id)
+        .bind(LedgerAccount::investor_fiat(investor_id))
+        .bind(asset_id)
+        .bind(fiat_received)
+        .execute(&mut *db_tx)
+        .await?;
+
+        // Outbox — notifies investor dashboard
         let payload = json!({
             "mint_id":      mint_id.to_string(),
             "tx_hash":      tx_hash,
@@ -132,7 +220,8 @@ impl TokenMintingService {
 
         sqlx::query(
             r#"
-            INSERT INTO outbox_events (id, aggregate_id, event_type, payload, created_at)
+            INSERT INTO outbox_events
+                (id, aggregate_id, event_type, payload, created_at)
             VALUES ($1, $2, 'token.mint_confirmed', $3, NOW())
             "#,
         )
@@ -144,7 +233,10 @@ impl TokenMintingService {
 
         db_tx.commit().await?;
 
-        info!(%mint_id, %tx_hash, %block_number, "mint confirmed on-chain");
+        info!(
+            %mint_id, %tx_hash, %block_number,
+            "mint confirmed on-chain"
+        );
         Ok(())
     }
 
@@ -152,20 +244,13 @@ impl TokenMintingService {
     // Private helpers
     // -----------------------------------------------------------------------
 
-    /// Acquires a pessimistic lock on legal_wrappers, derives allocated
-    /// supply from token_mints/token_redemptions, checks availability,
-    /// inserts the token_mint record, and writes the outbox event — all
-    /// in a single DB transaction.
     async fn lock_supply_and_create_mint(
         &self,
         req: &MintTokensRequest,
     ) -> Result<Uuid, RwaError> {
         let mut db_tx = self.db.begin().await?;
 
-        // Pessimistic lock on legal_wrappers — serialises concurrent
-        // mints for this asset. Prevents overselling: two simultaneous
-        // $250M mints against a $500M fund cannot both succeed if only
-        // $300M supply remains.
+        // Pessimistic lock on legal_wrappers
         let wrapper_row = sqlx::query(
             r#"
             SELECT token_supply
@@ -181,11 +266,11 @@ impl TokenMintingService {
             asset_id: req.asset_id,
         })?;
 
-        let total_supply: Decimal = wrapper_row.get("token_supply");
+        let total_supply: Decimal =
+            wrapper_row.get("token_supply");
 
-        // Derive allocated supply from the append-only ledger.
-        // All mints count (pending + confirmed) because supply is
-        // reserved at mint creation. Only settled redemptions release.
+        // All mints count (pending + confirmed) — supply is
+        // reserved at creation
         let minted_row = sqlx::query(
             r#"
             SELECT COALESCE(SUM(token_amount), 0) AS total
@@ -198,11 +283,18 @@ impl TokenMintingService {
         .await?;
         let total_minted: Decimal = minted_row.get("total");
 
+        // Only settled redemptions release supply.
+        // Status is now derived from token_redemption_events.
         let redeemed_row = sqlx::query(
             r#"
-            SELECT COALESCE(SUM(token_amount), 0) AS total
-            FROM token_redemptions
-            WHERE asset_id = $1 AND status = 'settled'
+            SELECT COALESCE(SUM(tr.token_amount), 0) AS total
+            FROM token_redemptions tr
+            WHERE tr.asset_id = $1
+              AND EXISTS (
+                SELECT 1 FROM token_redemption_events tre
+                WHERE tre.redemption_id = tr.id
+                  AND tre.status = 'settled'
+              )
             "#,
         )
         .bind(req.asset_id)
@@ -220,8 +312,6 @@ impl TokenMintingService {
             });
         }
 
-        // Create mint record — state machine entry point
-        // The INSERT into token_mints IS the state change (no counter).
         let mint_id = Uuid::new_v4();
 
         sqlx::query(
@@ -245,7 +335,6 @@ impl TokenMintingService {
         .execute(&mut *db_tx)
         .await?;
 
-        // Outbox event in the same transaction — durable even if broker is down
         let payload = json!({
             "mint_id":       mint_id.to_string(),
             "asset_id":      req.asset_id.to_string(),
@@ -256,7 +345,8 @@ impl TokenMintingService {
 
         sqlx::query(
             r#"
-            INSERT INTO outbox_events (id, aggregate_id, event_type, payload, created_at)
+            INSERT INTO outbox_events
+                (id, aggregate_id, event_type, payload, created_at)
             VALUES ($1, $2, 'token.mint_requested', $3, NOW())
             "#,
         )
@@ -299,7 +389,10 @@ impl TokenMintingService {
         Ok(row.map(|r| map_mint_row(&r)))
     }
 
-    async fn find_mint_by_id(&self, mint_id: Uuid) -> Result<TokenMint, RwaError> {
+    async fn find_mint_by_id(
+        &self,
+        mint_id: Uuid,
+    ) -> Result<TokenMint, RwaError> {
         let row = sqlx::query(
             r#"
             SELECT id, asset_id, investor_id, wallet_address,

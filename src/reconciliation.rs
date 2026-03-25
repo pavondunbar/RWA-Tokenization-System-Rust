@@ -10,7 +10,6 @@ use crate::{
 };
 
 /// Tolerance for NAV comparison against custodian report.
-/// Any delta above $0.01 is flagged as a mismatch.
 const NAV_TOLERANCE: &str = "0.01";
 
 pub struct RwaReconciliationEngine {
@@ -27,31 +26,40 @@ impl RwaReconciliationEngine {
         custodian_api: Box<dyn CustodianApi>,
         alert_service: Box<dyn AlertService>,
     ) -> Self {
-        Self { db, blockchain, custodian_api, alert_service }
+        Self {
+            db, blockchain, custodian_api, alert_service,
+        }
     }
 
-    /// Compares internal ledger state against on-chain reality and custodian report.
-    /// Runs daily, after NAV calculation.
-    ///
-    /// Checks:
-    ///   1. Minted supply in DB == total token supply on-chain
-    ///   2. Fund total_value in DB ≈ custodian NAV report (within $0.01 tolerance)
-    ///
-    /// Any mismatch fires a CRITICAL alert and returns false.
-    /// Callers should halt new mints and redemptions until resolved.
+    /// Compares internal ledger state against on-chain reality
+    /// and custodian report. Runs daily, after NAV calculation.
     #[instrument(skip(self), fields(%asset_id))]
-    pub async fn reconcile_asset(&self, asset_id: Uuid) -> Result<bool, RwaError> {
+    pub async fn reconcile_asset(
+        &self,
+        asset_id: Uuid,
+    ) -> Result<bool, RwaError> {
 
-        // ---- STEP 1: Read internal ledger state ------------------------------
-        let asset_row = sqlx::query(
-            "SELECT total_value FROM rwa_assets WHERE id = $1",
+        // Derive total value: base + all accrued yield
+        let value_row = sqlx::query(
+            r#"
+            SELECT
+                a.total_value + COALESCE(
+                    (SELECT SUM(n.daily_yield)
+                     FROM nav_calculations n
+                     WHERE n.asset_id = a.id),
+                    0
+                ) AS derived_total_value
+            FROM rwa_assets a
+            WHERE a.id = $1
+            "#,
         )
         .bind(asset_id)
         .fetch_optional(&self.db)
         .await?
         .ok_or(RwaError::AssetNotFound { asset_id })?;
 
-        let total_value: Decimal = asset_row.get("total_value");
+        let total_value: Decimal =
+            value_row.get("derived_total_value");
 
         // Derive allocated supply from append-only ledger tables
         let minted_row = sqlx::query(
@@ -66,11 +74,18 @@ impl RwaReconciliationEngine {
         .await?;
         let total_minted: Decimal = minted_row.get("total");
 
+        // Only settled redemptions reduce supply.
+        // Status derived from token_redemption_events.
         let redeemed_row = sqlx::query(
             r#"
-            SELECT COALESCE(SUM(token_amount), 0) AS total
-            FROM token_redemptions
-            WHERE asset_id = $1 AND status = 'settled'
+            SELECT COALESCE(SUM(tr.token_amount), 0) AS total
+            FROM token_redemptions tr
+            WHERE tr.asset_id = $1
+              AND EXISTS (
+                SELECT 1 FROM token_redemption_events tre
+                WHERE tre.redemption_id = tr.id
+                  AND tre.status = 'settled'
+              )
             "#,
         )
         .bind(asset_id)
@@ -80,26 +95,28 @@ impl RwaReconciliationEngine {
 
         let minted_supply = total_minted - total_redeemed;
 
-        // ---- STEP 2: Read on-chain state and custodian report ----------------
-        // Both calls are OUTSIDE any DB transaction — external service calls
-        let onchain_supply = self.blockchain.get_total_supply(asset_id).await?;
-        let custodian_nav  = self.custodian_api.get_nav(asset_id).await?;
+        // External service calls — OUTSIDE any DB transaction
+        let onchain_supply = self.blockchain
+            .get_total_supply(asset_id)
+            .await?;
+        let custodian_nav = self.custodian_api
+            .get_nav(asset_id)
+            .await?;
 
-        // ---- STEP 3: Compare and collect mismatches -------------------------
         let mut mismatches: Vec<serde_json::Value> = vec![];
-        let tolerance = Decimal::from_str_exact(NAV_TOLERANCE).unwrap();
+        let tolerance = Decimal::from_str_exact(NAV_TOLERANCE)
+            .expect("constant is valid");
 
-        // Check 1: Token supply matches on-chain
         if minted_supply != onchain_supply {
             mismatches.push(json!({
                 "type":     "supply_mismatch",
                 "internal": minted_supply.to_string(),
                 "onchain":  onchain_supply.to_string(),
-                "delta":    (minted_supply - onchain_supply).abs().to_string(),
+                "delta":    (minted_supply - onchain_supply)
+                    .abs().to_string(),
             }));
         }
 
-        // Check 2: Fund value matches custodian report (within tolerance)
         let nav_delta = (total_value - custodian_nav).abs();
         if nav_delta > tolerance {
             mismatches.push(json!({
@@ -111,17 +128,19 @@ impl RwaReconciliationEngine {
             }));
         }
 
-        // ---- STEP 4: Alert and halt on any mismatch -------------------------
         if !mismatches.is_empty() {
             let details = json!(mismatches);
             error!(
                 %asset_id,
                 mismatch_count = mismatches.len(),
-                "reconciliation failed — halting mints and redemptions"
+                "reconciliation failed — halting operations"
             );
             self.alert_service
                 .critical(
-                    &format!("RWA reconciliation failed for asset {asset_id}"),
+                    &format!(
+                        "RWA reconciliation failed for asset \
+                         {asset_id}"
+                    ),
                     details.clone(),
                 )
                 .await?;
@@ -136,7 +155,8 @@ impl RwaReconciliationEngine {
             %asset_id,
             %minted_supply,
             %total_value,
-            "reconciliation passed — ledger matches on-chain and custodian"
+            "reconciliation passed — ledger matches on-chain \
+             and custodian"
         );
 
         Ok(true)

@@ -159,6 +159,22 @@ impl RedemptionStatus {
     }
 }
 
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum WhitelistAction {
+    Grant,
+    Revoke,
+}
+
+impl WhitelistAction {
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            Self::Grant  => "grant",
+            Self::Revoke => "revoke",
+        }
+    }
+}
+
 // -----------------------------------------------------------------------
 // Database row types
 // -----------------------------------------------------------------------
@@ -174,7 +190,14 @@ pub struct RwaAsset {
     pub status:          String,
     pub idempotency_key: Option<String>,
     pub created_at:      DateTime<Utc>,
-    pub updated_at:      DateTime<Utc>,
+}
+
+#[derive(Debug, Clone)]
+pub struct RwaAssetStatusEvent {
+    pub id:         Uuid,
+    pub asset_id:   Uuid,
+    pub status:     String,
+    pub created_at: DateTime<Utc>,
 }
 
 #[derive(Debug, Clone)]
@@ -204,11 +227,23 @@ pub struct InvestorCompliance {
 }
 
 #[derive(Debug, Clone)]
-pub struct WhitelistedWallet {
+pub struct ComplianceStatusEvent {
+    pub id:            Uuid,
+    pub compliance_id: Uuid,
+    pub investor_id:   Uuid,
+    pub status:        String,
+    pub reason:        Option<String>,
+    pub created_at:    DateTime<Utc>,
+}
+
+#[derive(Debug, Clone)]
+pub struct WalletWhitelistEvent {
     pub id:             Uuid,
     pub investor_id:    Uuid,
     pub wallet_address: String,
     pub tier:           String,
+    pub action:         String,
+    pub reason:         Option<String>,
     pub created_at:     DateTime<Utc>,
 }
 
@@ -229,6 +264,16 @@ pub struct TokenMint {
 }
 
 #[derive(Debug, Clone)]
+pub struct TokenMintEvent {
+    pub id:           Uuid,
+    pub mint_id:      Uuid,
+    pub status:       String,
+    pub tx_hash:      Option<String>,
+    pub block_number: Option<i64>,
+    pub created_at:   DateTime<Utc>,
+}
+
+#[derive(Debug, Clone)]
 pub struct TokenRedemption {
     pub id:              Uuid,
     pub asset_id:        Uuid,
@@ -243,6 +288,14 @@ pub struct TokenRedemption {
 }
 
 #[derive(Debug, Clone)]
+pub struct TokenRedemptionEvent {
+    pub id:            Uuid,
+    pub redemption_id: Uuid,
+    pub status:        String,
+    pub created_at:    DateTime<Utc>,
+}
+
+#[derive(Debug, Clone)]
 pub struct NavCalculation {
     pub id:              Uuid,
     pub asset_id:        Uuid,
@@ -251,6 +304,56 @@ pub struct NavCalculation {
     pub yield_rate:      Decimal,
     pub calculated_at:   DateTime<Utc>,
     pub idempotency_key: Option<String>,
+}
+
+#[derive(Debug, Clone)]
+pub struct OutboxPublishRecord {
+    pub id:           Uuid,
+    pub event_id:     Uuid,
+    pub published_at: DateTime<Utc>,
+}
+
+#[derive(Debug, Clone)]
+pub struct LedgerEntry {
+    pub id:           Uuid,
+    pub entry_date:   DateTime<Utc>,
+    pub event_type:   String,
+    pub reference_id: Uuid,
+    pub account:      String,
+    pub asset_id:     Uuid,
+    pub debit:        Decimal,
+    pub credit:       Decimal,
+    pub currency:     String,
+    pub memo:         Option<String>,
+    pub created_at:   DateTime<Utc>,
+}
+
+// -----------------------------------------------------------------------
+// Ledger account naming helpers
+// -----------------------------------------------------------------------
+
+pub struct LedgerAccount;
+
+impl LedgerAccount {
+    pub fn fund_treasury(asset_id: Uuid) -> String {
+        format!("fund:treasury:{asset_id}")
+    }
+
+    pub fn fund_fiat(asset_id: Uuid) -> String {
+        format!("fund:fiat:{asset_id}")
+    }
+
+    pub fn fund_yield(asset_id: Uuid) -> String {
+        format!("fund:yield:{asset_id}")
+    }
+
+    pub fn investor_tokens(investor_id: Uuid) -> String {
+        format!("investor:tokens:{investor_id}")
+    }
+
+    pub fn investor_fiat(investor_id: Uuid) -> String {
+        format!("investor:fiat:{investor_id}")
+    }
 }
 
 // -----------------------------------------------------------------------

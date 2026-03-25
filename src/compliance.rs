@@ -6,7 +6,10 @@ use uuid::Uuid;
 
 use crate::{
     errors::RwaError,
-    models::{ComplianceStatus, InvestorCompliance, OnboardInvestorRequest},
+    models::{
+        ComplianceStatus, InvestorCompliance,
+        OnboardInvestorRequest, WhitelistAction,
+    },
     ports::{KycProvider, SanctionsChecker},
 };
 
@@ -26,16 +29,6 @@ impl KycComplianceService {
     }
 
     /// Onboards an investor through full KYC/AML.
-    ///
-    /// RWA tokens are NOT permissionless. Every investor must pass KYC/AML
-    /// before holding tokens, and every wallet must be whitelisted.
-    /// Both sender AND receiver are checked on every transfer.
-    ///
-    /// BlackRock BUIDL requirements:
-    ///   - Institutional investors only ($5M+ minimum)
-    ///   - Full KYC/AML via Securitize
-    ///   - Whitelisted Ethereum wallet addresses only
-    ///   - KYC expires annually — must re-verify
     #[instrument(skip(self), fields(
         investor_id    = %req.investor_id,
         wallet_address = %req.wallet_address,
@@ -46,18 +39,18 @@ impl KycComplianceService {
         req: OnboardInvestorRequest,
     ) -> Result<Uuid, RwaError> {
 
-        // ---- STEP 1: Idempotency check ----------------------------------------
-        if let Some(existing) = self.find_by_idempotency_key(&req.idempotency_key).await? {
+        if let Some(existing) = self
+            .find_by_idempotency_key(&req.idempotency_key)
+            .await?
+        {
             info!(
                 idempotency_key = %req.idempotency_key,
                 compliance_id   = %existing.id,
-                "duplicate onboarding — returning existing compliance record"
+                "duplicate onboarding — returning existing"
             );
             return Ok(existing.id);
         }
 
-        // ---- STEP 2: Sanctions screening — OFAC, EU, UN lists ----------------
-        // OUTSIDE the DB transaction — never hold a row lock during external calls
         let sanctions_result = self.sanctions_checker
             .screen(req.investor_id, &req.jurisdiction)
             .await?;
@@ -68,17 +61,18 @@ impl KycComplianceService {
                 list        = ?sanctions_result.list_name,
                 "investor failed sanctions screening"
             );
-            return Err(RwaError::SanctionedInvestor { investor_id: req.investor_id });
+            return Err(RwaError::SanctionedInvestor {
+                investor_id: req.investor_id,
+            });
         }
 
-        // ---- STEP 3: KYC/AML — identity + accreditation verification ---------
-        // OUTSIDE the DB transaction — external API call
         let kyc_result = self.kyc_provider
             .verify(req.investor_id, &req.investor_tier)
             .await?;
 
         if !kyc_result.passed {
-            let reason = kyc_result.reason.unwrap_or_else(|| "no reason provided".into());
+            let reason = kyc_result.reason
+                .unwrap_or_else(|| "no reason provided".into());
             warn!(
                 investor_id = %req.investor_id,
                 %reason,
@@ -87,9 +81,12 @@ impl KycComplianceService {
             return Err(RwaError::KycFailed { reason });
         }
 
-        // ---- STEP 4: Write compliance record + whitelist wallet atomically ----
         let compliance_id = self
-            .insert_compliance_and_whitelist(&req, &kyc_result.reference_id, kyc_result.expiry_date)
+            .insert_compliance_and_whitelist(
+                &req,
+                &kyc_result.reference_id,
+                kyc_result.expiry_date,
+            )
             .await?;
 
         info!(
@@ -104,33 +101,24 @@ impl KycComplianceService {
     }
 
     /// Returns true only if BOTH wallets are currently whitelisted.
-    /// Called before every token transfer — enforced at the application layer
-    /// and optionally mirrored via on-chain oracle or transfer hook.
+    /// Checks the latest action in wallet_whitelist_events — a wallet
+    /// is whitelisted if its most recent event is 'grant'.
     pub async fn can_transfer(
         &self,
         from_wallet: &str,
         to_wallet: &str,
     ) -> Result<bool, RwaError> {
-        let sender_row = sqlx::query(
-            "SELECT id FROM whitelisted_wallets WHERE wallet_address = $1",
-        )
-        .bind(from_wallet)
-        .fetch_optional(&self.db)
-        .await?;
+        let sender_ok = self
+            .is_wallet_whitelisted(from_wallet)
+            .await?;
+        let receiver_ok = self
+            .is_wallet_whitelisted(to_wallet)
+            .await?;
 
-        let receiver_row = sqlx::query(
-            "SELECT id FROM whitelisted_wallets WHERE wallet_address = $1",
-        )
-        .bind(to_wallet)
-        .fetch_optional(&self.db)
-        .await?;
-
-        Ok(sender_row.is_some() && receiver_row.is_some())
+        Ok(sender_ok && receiver_ok)
     }
 
-    /// Revokes an investor's whitelist status.
-    /// Called when KYC expires, a sanctions hit occurs, or investor exits.
-    /// After revocation the wallet cannot receive any further transfers.
+    /// Revokes an investor's whitelist status via append-only events.
     #[instrument(skip(self), fields(investor_id = %investor_id))]
     pub async fn revoke_whitelist(
         &self,
@@ -139,27 +127,61 @@ impl KycComplianceService {
     ) -> Result<(), RwaError> {
         let mut db_tx = self.db.begin().await?;
 
-        sqlx::query(
-            "DELETE FROM whitelisted_wallets WHERE investor_id = $1",
-        )
-        .bind(investor_id)
-        .execute(&mut *db_tx)
-        .await?;
-
-        sqlx::query(
+        // Look up the investor's wallet(s) and compliance record
+        let comp_rows = sqlx::query(
             r#"
-            UPDATE investor_compliance
-            SET status     = $1,
-                updated_at = NOW()
-            WHERE investor_id = $2
+            SELECT id, wallet_address, tier
+            FROM investor_compliance
+            WHERE investor_id = $1
             "#,
         )
-        .bind(ComplianceStatus::Expired.as_str())
         .bind(investor_id)
-        .execute(&mut *db_tx)
+        .fetch_all(&mut *db_tx)
         .await?;
 
-        // Outbox — notifies token platform to immediately block further transfers
+        // Append revoke events for each wallet
+        for comp_row in &comp_rows {
+            let wallet: String = comp_row.get("wallet_address");
+            let tier: String = comp_row.get("tier");
+            let compliance_id: Uuid = comp_row.get("id");
+
+            sqlx::query(
+                r#"
+                INSERT INTO wallet_whitelist_events (
+                    id, investor_id, wallet_address,
+                    tier, action, reason
+                )
+                VALUES ($1, $2, $3, $4, $5, $6)
+                "#,
+            )
+            .bind(Uuid::new_v4())
+            .bind(investor_id)
+            .bind(&wallet)
+            .bind(&tier)
+            .bind(WhitelistAction::Revoke.as_str())
+            .bind(reason)
+            .execute(&mut *db_tx)
+            .await?;
+
+            // Append compliance status event
+            sqlx::query(
+                r#"
+                INSERT INTO compliance_status_events (
+                    id, compliance_id, investor_id, status, reason
+                )
+                VALUES ($1, $2, $3, $4, $5)
+                "#,
+            )
+            .bind(Uuid::new_v4())
+            .bind(compliance_id)
+            .bind(investor_id)
+            .bind(ComplianceStatus::Expired.as_str())
+            .bind(reason)
+            .execute(&mut *db_tx)
+            .await?;
+        }
+
+        // Outbox — notifies token platform
         let payload = json!({
             "investor_id": investor_id.to_string(),
             "reason":      reason,
@@ -167,7 +189,8 @@ impl KycComplianceService {
 
         sqlx::query(
             r#"
-            INSERT INTO outbox_events (id, aggregate_id, event_type, payload, created_at)
+            INSERT INTO outbox_events
+                (id, aggregate_id, event_type, payload, created_at)
             VALUES ($1, $2, 'investor.whitelist_revoked', $3, NOW())
             "#,
         )
@@ -186,6 +209,34 @@ impl KycComplianceService {
     // -----------------------------------------------------------------------
     // Private helpers
     // -----------------------------------------------------------------------
+
+    /// A wallet is whitelisted if its most recent event is 'grant'.
+    async fn is_wallet_whitelisted(
+        &self,
+        wallet: &str,
+    ) -> Result<bool, RwaError> {
+        let row = sqlx::query(
+            r#"
+            SELECT action
+            FROM wallet_whitelist_events
+            WHERE wallet_address = $1
+            ORDER BY created_at DESC
+            LIMIT 1
+            "#,
+        )
+        .bind(wallet)
+        .fetch_optional(&self.db)
+        .await?;
+
+        let whitelisted = row
+            .map(|r| {
+                r.get::<String, _>("action")
+                    == WhitelistAction::Grant.as_str()
+            })
+            .unwrap_or(false);
+
+        Ok(whitelisted)
+    }
 
     async fn find_by_idempotency_key(
         &self,
@@ -250,21 +301,20 @@ impl KycComplianceService {
         .execute(&mut *db_tx)
         .await?;
 
-        // Whitelist the wallet — only whitelisted wallets can send or receive tokens.
-        // ON CONFLICT handles re-runs where the wallet is already whitelisted.
+        // Append whitelist grant event
         sqlx::query(
             r#"
-            INSERT INTO whitelisted_wallets (
-                id, investor_id, wallet_address, tier, created_at
+            INSERT INTO wallet_whitelist_events (
+                id, investor_id, wallet_address, tier, action
             )
-            VALUES ($1, $2, $3, $4, NOW())
-            ON CONFLICT (wallet_address) DO NOTHING
+            VALUES ($1, $2, $3, $4, $5)
             "#,
         )
         .bind(Uuid::new_v4())
         .bind(req.investor_id)
         .bind(&req.wallet_address)
         .bind(req.investor_tier.as_str())
+        .bind(WhitelistAction::Grant.as_str())
         .execute(&mut *db_tx)
         .await?;
 
@@ -278,7 +328,8 @@ impl KycComplianceService {
 
         sqlx::query(
             r#"
-            INSERT INTO outbox_events (id, aggregate_id, event_type, payload, created_at)
+            INSERT INTO outbox_events
+                (id, aggregate_id, event_type, payload, created_at)
             VALUES ($1, $2, 'investor.whitelisted', $3, NOW())
             "#,
         )

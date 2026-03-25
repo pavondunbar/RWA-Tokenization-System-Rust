@@ -1,0 +1,13 @@
+/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/lib/cmake/RdKafka/RdKafkaConfig.cmake
+/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/lib/cmake/RdKafka/RdKafkaConfigVersion.cmake
+/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/lib/cmake/RdKafka/FindLZ4.cmake
+/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/lib/cmake/RdKafka/RdKafkaTargets.cmake
+/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/lib/cmake/RdKafka/RdKafkaTargets-debug.cmake
+/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/share/licenses/librdkafka/LICENSES.txt
+/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/lib/pkgconfig/rdkafka-static.pc
+/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/lib/librdkafka.a
+/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/include/librdkafka/rdkafka.h
+/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/include/librdkafka/rdkafka_mock.h
+/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/lib/pkgconfig/rdkafka++-static.pc
+/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/lib/librdkafka++.a
+/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/include/librdkafka/rdkafkacpp.h

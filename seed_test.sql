@@ -13,7 +13,7 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 INSERT INTO rwa_assets (
     id, type, name, total_value,
     jurisdiction, custodian, status,
-    idempotency_key, created_at, updated_at
+    idempotency_key, created_at
 )
 VALUES (
     gen_random_uuid(),
@@ -24,9 +24,14 @@ VALUES (
     'BNY Mellon Digital Assets',    -- regulated custodian
     'approved',
     gen_random_uuid()::VARCHAR,
-    NOW(),
     NOW()
 );
+
+-- Record initial status event
+INSERT INTO rwa_asset_status_events (id, asset_id, status)
+SELECT gen_random_uuid(), id, 'approved'
+FROM rwa_assets
+WHERE name = 'Blackstone Treasury Token Fund (BTTF)';
 
 SELECT * FROM rwa_assets;
 
@@ -110,23 +115,22 @@ SELECT * FROM investor_compliance;
 
 -- -----------------------------------------------
 -- STEP 4: Whitelist all three investor wallets
--- Only whitelisted wallets can receive BTTF tokens
--- Smart contract checks this before every transfer
+-- via append-only wallet_whitelist_events
 -- -----------------------------------------------
 
-INSERT INTO whitelisted_wallets (
-    id, investor_id, wallet_address, tier, created_at
+INSERT INTO wallet_whitelist_events (
+    id, investor_id, wallet_address, tier, action
 )
 SELECT
     gen_random_uuid(),
     investor_id,
     wallet_address,
     tier,
-    NOW()
+    'grant'
 FROM investor_compliance
 WHERE status = 'approved';
 
-SELECT * FROM whitelisted_wallets;
+SELECT * FROM wallet_whitelist_events;
 
 -- -----------------------------------------------
 -- STEP 5: Mint tokens to each investor
@@ -171,6 +175,12 @@ FROM investor_compliance c
 CROSS JOIN rwa_assets a
 WHERE a.name = 'Blackstone Treasury Token Fund (BTTF)'
 AND c.status = 'approved';
+
+-- Record confirmation events for each mint
+INSERT INTO token_mint_events (id, mint_id, status)
+SELECT gen_random_uuid(), id, 'confirmed'
+FROM token_mints
+WHERE status = 'confirmed';
 
 SELECT * FROM token_mints;
 

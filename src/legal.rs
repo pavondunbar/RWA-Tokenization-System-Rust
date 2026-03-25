@@ -19,11 +19,8 @@ impl LegalWrapperService {
     }
 
     /// Creates the legal entity that legally owns the real-world asset.
-    /// This is the bridge between off-chain ownership and on-chain token representation.
-    /// Without this layer the token is just a receipt — no enforceable legal claim.
-    ///
-    /// Also advances the asset state machine from PENDING_LEGAL → PENDING_AUDIT,
-    /// all atomically.
+    /// Also advances the asset state machine from
+    /// PENDING_LEGAL -> PENDING_AUDIT via an append-only status event.
     #[instrument(skip(self), fields(
         asset_id     = %req.asset_id,
         structure    = %req.structure_type.as_str(),
@@ -35,25 +32,41 @@ impl LegalWrapperService {
     ) -> Result<Uuid, RwaError> {
         let mut db_tx = self.db.begin().await?;
 
-        // Pessimistic lock — enforces one legal wrapper per asset.
-        // Any concurrent attempt blocks here until we commit.
+        // Read asset base data (immutable row)
         let row = sqlx::query(
             r#"
-            SELECT id, status, total_value
+            SELECT id, total_value
             FROM rwa_assets
             WHERE id = $1
-            FOR UPDATE
             "#,
         )
         .bind(req.asset_id)
         .fetch_optional(&mut *db_tx)
         .await?
-        .ok_or(RwaError::AssetNotFound { asset_id: req.asset_id })?;
+        .ok_or(RwaError::AssetNotFound {
+            asset_id: req.asset_id,
+        })?;
 
-        let status: String      = row.get("status");
         let total_value: Decimal = row.get("total_value");
 
-        // State machine guard — asset must be in PENDING_LEGAL before wrapping
+        // Read latest status from event log
+        let status_row = sqlx::query(
+            r#"
+            SELECT status
+            FROM rwa_asset_status_events
+            WHERE asset_id = $1
+            ORDER BY created_at DESC
+            LIMIT 1
+            "#,
+        )
+        .bind(req.asset_id)
+        .fetch_optional(&mut *db_tx)
+        .await?;
+
+        let status = status_row
+            .map(|r| r.get::<String, _>("status"))
+            .unwrap_or_default();
+
         if status != AssetStatus::PendingLegal.as_str() {
             return Err(RwaError::InvalidState {
                 expected: AssetStatus::PendingLegal.as_str().into(),
@@ -61,9 +74,6 @@ impl LegalWrapperService {
             });
         }
 
-        // Token economics:
-        //   price_per_token = total_value / token_supply
-        //   BUIDL: $2.9B / 2.9B tokens = $1.00 per token
         let price_per_token = total_value / req.token_supply;
 
         let wrapper_id = Uuid::new_v4();
@@ -86,21 +96,19 @@ impl LegalWrapperService {
         .execute(&mut *db_tx)
         .await?;
 
-        // Advance asset state machine: PENDING_LEGAL → PENDING_AUDIT
+        // Append status transition event instead of UPDATE
         sqlx::query(
             r#"
-            UPDATE rwa_assets
-            SET status     = $1,
-                updated_at = NOW()
-            WHERE id = $2
+            INSERT INTO rwa_asset_status_events (id, asset_id, status)
+            VALUES ($1, $2, $3)
             "#,
         )
-        .bind(AssetStatus::PendingAudit.as_str())
+        .bind(Uuid::new_v4())
         .bind(req.asset_id)
+        .bind(AssetStatus::PendingAudit.as_str())
         .execute(&mut *db_tx)
         .await?;
 
-        // Outbox — triggers the external audit workflow
         let payload = json!({
             "asset_id":        req.asset_id.to_string(),
             "wrapper_id":      wrapper_id.to_string(),
@@ -111,7 +119,8 @@ impl LegalWrapperService {
 
         sqlx::query(
             r#"
-            INSERT INTO outbox_events (id, aggregate_id, event_type, payload, created_at)
+            INSERT INTO outbox_events
+                (id, aggregate_id, event_type, payload, created_at)
             VALUES ($1, $2, 'rwa.legal_wrapper_created', $3, NOW())
             "#,
         )
