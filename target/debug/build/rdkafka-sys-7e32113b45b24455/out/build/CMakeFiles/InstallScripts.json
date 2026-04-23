@@ -1,9 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/cmake_install.cmake",
-		"/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/src/cmake_install.cmake",
-		"/Users/pavondunbar/RWA-RUST/target/debug/build/rdkafka-sys-7e32113b45b24455/out/build/src-cpp/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
